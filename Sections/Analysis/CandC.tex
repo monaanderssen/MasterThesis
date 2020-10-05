@@ -1,0 +1,441 @@
+\chapter{Search for Supersymmetry and dark matter in events with dileptons and missing energy}
+\label{sec:CandCanalysis}
+
+%Beskriv prosessene her istedet for i teori og motiver hvordan partiklene er produsert. 
+
+In this chapter we will introduce the processes we are searching for in the analysis, how the signal and background samples are produced and in the end how we do a traditional analysis. We will also show the results obtained by the ATLAS collaboration and compare the results with ours. 
+
+\input{Sections/Methods/CandC.tex}
+
+
+\section{The standard way: Cut and count}
+\label{sec:candc}
+
+The first part of the analysis done in this thesis is a traditional cut and count analysis. \textit{Cut and count} is probably the most known method used in particle physics and has proved to be very effective in the discoveries we have done so far. Since the data become more and more massive and the processes we are looking at more and more complicated, we also need to develop further the way we perform the analysis. In this thesis we are mainly going to focus on machine learning algorithms. Therefore I have not done much with this standard way to do an analysis and have used an already existing tool developed at CERN.  
+
+In cut and count, we select events sensitive to new physics, i.e., we cut away events that are not interesting for the process we are considering according to some selection criteria. After applying one cut/selection, the events we are left with form the so-called called \textit{signal region}. We then see whether the signal is separated from our Standard Model (SM) background in this region. We can calculate an expected significance $Z$, which will be explained in section \ref{sec:significance} later in the thesis, to check if we can expect to claim any discovery in this region at all. If we are lucky and have cut away enough background to separate the signal from the background, we can also see if the events left in the data are compatible with the signal or if they keeps matching the background instead. Let us consider the case where the data differ from the background and tends to follow the signal: we know that there is most likely something interesting in this region.
+
+Of course, there are advantages and disadvantages with every method, and this is also the case for cut and count. In cut and count, we need a theory or hypothesis as a reference, so we know what kind of signals we should look for. It is therefore unfortunately limited by the human understanding of what we are looking at. The lack of human understanding is where Machine Learning (ML) comes to help. The ML methods help us separate the signal from the background. This is further explained in the following chapters, where we will look at what the different ML methods do.
+
+
+
+\begin{comment}
+The analysis methods in high energy physics is constantly evolving and we have during the many years in this field looked in new directions to find better methods to use. The main method that have been used so far is the cut and count analysis which is presented in this chapter, but unfortunately this method is limited by the human understanding of the data. This is one of the reasons why we also have added ML to our analysis methods which will be presented in chapter \ref{sec:MLanalysis}.
+\end{comment}
+
+\section{Reproducing the ATLAS publications}
+The first part of this analysis was done by cut and count and the goal was to reproduce the results from publications done by ATLAS. Here we will compare our results to the results obtained at the ATLAS experiment and hopefully we will get a good agreement between these two.
+
+Since the goal is to reproduce the same results someone else have obtained, it is a good start to do the same analysis procedure as the publications. The cuts done for the SUSY processes are listed in table \ref{tab:cutsSUSY} and for the mono-Z process in table \ref{tab:cutsDM}, where both tables are taken from the publications. All the kinematic variables we do cuts on are presented in The first cut we do for both processes is to demand only two lepton with opposite sign in the final state.
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l}\toprule
+    \textbf{Variables} & \textbf{Cuts}\\
+    \midrule
+    \midrule
+    Two leptons & Same flavor (SF) and opposite sign (OS)\\
+    $n_{\text{non-b-tagged jets}}$     & 0 \\
+    $m_{ll}$ [GeV]     & 121.2\\
+    $E_T^{miss}$ [GeV] & $>$ 110 \\
+    $E_T^{miss}$ significance & $>$ 10\\
+    $n_{\text{b-tagged jets}}$ & 0\\
+    $m_{T2}$ & 160\\
+    \bottomrule
+    \end{tabular}
+    \caption{Cuts added in the cut and count analysis taken from the publication for the SUSY processes \cite{sleptonexclusion}.}
+    \label{tab:cutsSUSY}
+\end{table}
+
+For the SUSY processes we have applied the cuts in table \ref{tab:cutsSUSY}, where we in addition to have only two leptons with opposite sign in the final state, we demand that they have to have the same flavor as well. It is done a cut on the missing transverse energy as well, even though this is something we want in our final state. This is done because this will cut away more background than signal which entails that we will obtain a bigger separation between the signal and background. We are also demanding to have no jets at all (both b-tagged and non-b-tagged jets). The last cuts we apply is a cut on the invariant mass of the two leptons in the final state and a cut on the stransverse mass for the two invisible particles in the final state. 
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l}\toprule
+    \textbf{Variables} & \textbf{Cuts}\\
+    \midrule
+    \midrule
+    Two leptons     &  OS with leading (subleading) $p_T >$ 30 (20) GeV\\
+    $m_{ll}$     & 76 $< m_{ll} <$ 106 GeV\\
+    $E_T^{miss}$ & $>$ 90 GeV\\
+    $E_T^{miss}/H_T$ & $>$ 0.6\\
+    $\Delta \phi (\Vec{p}_T^{ll}, E_T^{miss})$ & $>$ 2.7 radians\\
+    $\Delta R_{ll}$ & $<$ 1.8\\
+    Fractional $p_T$ difference & $|p_T^{ll} - p_T^{miss, jets}|/p_T^{ll} <$ 0.2\\
+    b-jets & 0\\
+    \bottomrule
+     \end{tabular}
+    \caption{Cuts added in the cut and count analysis taken from the publication for the mono-Z process \cite{monoZexclusion}.}
+    \label{tab:cutsDM}
+\end{table}
+
+For the DM process we have applied the cuts in table \ref{tab:cutsDM}, where we, as for the SUSY processes, demand to only have two leptons with opposite sign (but not necessary same flavor) in the final state together with missing transverse energy. In addition to the number of lepton cut, we do a cut on the $p_T$ of the leptons, where the leading lepton have a cut on 30 GeV and the subleading lepton have a cut on 20 GeV. We also do a slightly more gentle cut on the missing transverse energy for this process on 90 GeV, but we also have another variable that is depended on the missing transverse energy, namely $E_T^{miss}/H_T$ on 0.6. The next cut that is applied is $\Delta \phi (\Vec{p}_T^{ll}, E_T^{miss})$, where the two leptons also have to be close to each other which can be demand by $\Delta R_{ll}$. We do also a cut on the fractional $p_T$ difference and demand no b-tagged jets. 
+
+All of the cuts are applied to get less background events while we at the same time do not want to cut away to much of the signal events. The publications have applied more or less the same cuts as listed above in table \ref{tab:cutsSUSY} and \ref{tab:cutsDM}, and their results are presented in figure \ref{fig:atlaspub}.
+
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}[H]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/FromOnline/atlasmt2SUSY.png}
+    \caption{Stransverse mass for direct slepton production, chargino production with $\Tilde{l}/\Tilde{\nu}$-mediated decays and with W-boson-mediated decays.}
+    \label{fig:atlasSUSY}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[H]{\textwidth}
+        \includegraphics[width=\textwidth]{Figures/FromOnline/atlasmetDM.png}
+    \caption{Missing transverse energy for the mono-Z process, where the left plot is the electron channel and right is the muon channel.}
+    \label{fig:atlasDM}
+    \end{subfigure}
+    \caption{Results from the ATLAS publications for the four processes considered in this thesis.}
+    \label{fig:atlaspub}
+\end{figure}
+
+In figure \ref{fig:atlasSUSY} we can see that the signal are separated from the background for both the direct slepton production and the chargino production with W-boson-mediated-decay, but not for chargino production with slepton/sneutrino-mediated-decay. Which means that we should not expect to claim any discovery for this mass splitting for the slepton/sneutrino-mediated-decay. 
+
+In figure \ref{fig:atlasDM} we can see the plots for both electron channel and muon channel for the mono-Z process. It is not as much separation between signal and background as for the direct slepton production and for the chargino production with W-boson-mediated-decay.
+
+Later in this thesis we are going to calculate the expected significance for the different processes we are looking at with both cut and count and ML. This is not done in the publication we are looking at, but they have included an exclusion plot where we can see where we expect to see some signal. This is shown in figure \ref{fig:exclusionPlots}. Here we can see the expected exclusion limit with $\pm1\sigma$ uncertainty bin together with t. We are not going to reproduce these results in this thesis, but we are going to use this to see what signals we have enough sensitivity to actually discover in the detector.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width = \textwidth]{Figures/FromOnline/Slepslep.pdf}
+        \caption{Slepton pair production ($\Tilde{l}\Tilde{l}$) \cite{sleptonexclusion}.}
+        \label{fig:slepslepexclusion}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width = \textwidth]{Figures/FromOnline/Slepsnu.pdf}
+        \caption{$\chi_1^+ \chi_1^-$ production via $\Tilde{l}/\Tilde{\nu}$ \cite{sleptonexclusion}.}
+        \label{fig:slepsnuexclusion}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width = \textwidth]{Figures/FromOnline/WW.pdf}
+        \caption{$\chi_1^+ \chi_1^-$ production via W-boson \cite{sleptonexclusion}.}
+        \label{fig:WWexclusion}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width = \textwidth]{Figures/FromOnline/mono_Z.pdf}
+        \caption{Mono-Z process \cite{monoZexclusion}.}
+        \label{fig:monoZexclusion}
+    \end{subfigure}
+    \caption{The observed and expected exclusion limits for both the SUSY simplified models in \ref{fig:slepslepexclusion}, \ref{fig:slepsnuexclusion} and \ref{fig:WWexclusion} and for the DM model in \ref{fig:monoZexclusion}. The lines drawn in the plot is to show the mass splittings for each process.}
+    \label{fig:exclusionPlots}
+\end{figure}
+
+If we look at figure \ref{fig:exclusionPlots}, we have drawn to black lines in each plot. This is done to split the signal samples into different mass splittings in the ML analysis later in the thesis. To have the opportunity to compare our ML results with the cut and count analysis, we have chosen one signal sample from each part of the plots in figure \ref{fig:exclusionPlots}. This gives us the signal samples listed up in table \ref{tab:sigsampcutandcount}.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c c c}
+    \toprule
+    $\mathbf{(\Tilde{l}, \Tilde{\chi}_1^0)}$ & $\mathbf{(\Tilde{\chi}_1^\pm, \Tilde{\chi}_1^0)}$ & $\mathbf{(\Tilde{\chi}_1^\pm, \Tilde{\chi}_1^0)}$ & $\mathbf{( V, \chi)}$  \\
+    \midrule
+    \midrule
+    (400, 300) & (300, 200) & (150, 25) & (150, 80)\\
+    (600, 300) & (800, 400) & (350, 100) & (400, 150)\\
+    (700, 1) & (1000, 100) & (425, 25) & (650, 1)\\
+    \bottomrule
+    \end{tabular}
+    \caption{An overview of what signal samples that are used for this thesis.}
+    \label{tab:sigsampcutandcount}
+\end{table}
+
+These signal samples are going to follow us through both analysis (cut and count and ML). They are also shown in figure \ref{fig:cutandcountMONA} where we have followed the same procedure as the ATLAS publications. The main difference between the publications and our results is that we have chosen some other signal samples than the publications. The publications have 
+
+
+\newgeometry{twoside,inner=3cm,outer=2cm}
+\begin{figure}[H]
+%\begin{minipage}{2\textwidth}
+%\begin{adjustwidth}{-3cm}{-3cm}
+\centering
+%\advance\leftskip-4cm 
+%\advance\rightskip-4cm 
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/cutandcount/hist1d_mt2_direct_slepton.pdf}
+    \caption{Stransverse mass for direct slepton production.}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/cutandcount/hist1d_mt2_C1C1_SlepSnu.pdf}
+    \caption{Stransverse mass for chargino production via $\Tilde{l}/\Tilde{\nu}$.}
+    \label{fig:my_label}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/cutandcount/hist1d_mt2_C1C1_WW.pdf}
+    \caption{Stransverse mass for chargino production via $W^\pm$.}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/cutandcount/hist1d_met_Et_mono_Z.pdf}
+    \caption{Missing transverse energy for mono-Z.}
+    \label{fig:my_label}
+    \end{subfigure}
+    \caption{Plot of the four most important variables in direct slepton production with a cut on only two leptons with opposite charge in the final state.}
+    \label{fig:cutandcountMONA}
+\end{figure}
+\restoregeometry
+
+
+
+
+\begin{comment}
+%The first part of this analysis was done by cut and count. Here I have plotted four different variables which also represent some of the features used in the ML part. To demonstrate how the cut and count method behaves I have plotted each variable after adding a group of cuts. In the following figures you can see an example of this for the direct slepton production. You can also find examples of this for the charginos via slepton/sneutrino and via W-bosons in the appendix(OR GITHUB REPO??????). These two processes behave very similarly to the direct slepton production so I have chosen to show only one of them. 
+
+%In the first figure \ref{fig:slepslep1stcut} we can see the whole mass distribution for the SM background with the final state two leptons with opposite charge. We can see that Z-jets is definitely the dominating background and by adding some cuts we can reduce this background.
+
+
+\begin{figure}[H]
+%\begin{minipage}{2\textwidth}
+%\begin{adjustwidth}{-3cm}{-3cm}
+\centering
+%\advance\leftskip-4cm 
+%\advance\rightskip-4cm 
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_mll_direct_slepton.pdf}
+    \caption{Invariant mass}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_met_Et_direct_slepton.pdf}
+    \caption{Missing transverse energy}
+    \label{fig:my_label}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_mt2_direct_slepton.pdf}
+    \caption{Stransverse mass}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_met_Sign_direct_slepton.pdf}
+    \caption{Missing transverse energy significance}
+    \label{fig:my_label}
+    \end{subfigure}
+    \caption{Plot of the four most important variables in direct slepton production with a cut on only two leptons with opposite charge in the final state.}
+    \label{fig:slepslep1stcut}
+\end{figure}
+
+
+After adding a met cut and doing a Z-veto we get the results in figure \ref{fig:slepslep3rdcut} where we can see that Z + jets is reduced a lot. For most of the variables we can now see that the $t\Bar{t}$ is the dominating background, but the signal is still below the backgrounds so we need to add some more cuts.
+
+\begin{figure}[H]
+%\begin{minipage}{2\textwidth}
+%\begin{adjustwidth}{-3cm}{-3cm}
+\centering
+%\advance\leftskip-4cm 
+%\advance\rightskip-4cm 
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/3rdcut_Zveto/hist1d_mll_direct_slepton.pdf}
+    \caption{Invariant mass}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/3rdcut_Zveto/hist1d_met_Et_direct_slepton.pdf}
+    \caption{Missing transverse energy}
+    \label{fig:my_label}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/3rdcut_Zveto/hist1d_mt2_direct_slepton.pdf}
+    \caption{Stransverse mass}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/3rdcut_Zveto/hist1d_met_Sign_direct_slepton.pdf}
+    \caption{Missing transverse energy significance}
+    \label{fig:my_label}
+    \end{subfigure}
+    \caption{Plot of the four most important variables in direct slepton production with a cut on $E_T^{miss} >110$, $E_T^{miss}$ significance $>10$ and a Z-veto in addition to the previous cuts.}
+    \label{fig:slepslep3rdcut}
+\end{figure}
+
+
+
+After adding some jet cuts (number of jets with $p_T$> 30GeV = 0 and a b-jet veto) we get the results in figure \ref{fig:slepslep4th_3_cut}. We can see that we succeeded on reducing the $t\Bar{t}$ background as well and we now have diboson as the dominating background.
+
+\begin{figure}[H]
+%\begin{minipage}{2\textwidth}
+%\begin{adjustwidth}{-3cm}{-3cm}
+\centering
+%\advance\leftskip-4cm 
+%\advance\rightskip-4cm 
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/4thcut_3_Bjets/hist1d_mll_direct_slepton.pdf}
+    \caption{Invariant mass}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/4thcut_3_Bjets/hist1d_met_Et_direct_slepton.pdf}
+    \caption{Missing transverse energy}
+    \label{fig:my_label}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/4thcut_3_Bjets/hist1d_mt2_direct_slepton.pdf}
+    \caption{Stransverse mass}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/4thcut_3_Bjets/hist1d_met_Sign_direct_slepton.pdf}
+    \caption{Missing transverse energy significance}
+    \label{fig:my_label}
+    \end{subfigure}
+    \caption{Plot of the four most important variables in direct slepton production with a cut on number of jets and b-jets = 0 in addition to the previous cuts.}
+    \label{fig:slepslep4th_3_cut}
+\end{figure}
+
+After adding one last cut in the $m_{T_2}$  variable we can see that the background doesn't change that much and that our signals is almost cut away as well. 
+
+\begin{figure}[H]
+%\begin{minipage}{2\textwidth}
+%\begin{adjustwidth}{-3cm}{-3cm}
+\centering
+%\advance\leftskip-4cm 
+%\advance\rightskip-4cm 
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/5thcut_1_mt2_100/hist1d_mll_direct_slepton.pdf}
+    \caption{Invariant mass}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/5thcut_1_mt2_100/hist1d_met_Et_direct_slepton.pdf}
+    \caption{Missing transverse energy}
+    \label{fig:my_label}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/5thcut_1_mt2_100/hist1d_mt2_direct_slepton.pdf}
+    \caption{Stransverse mass}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/5thcut_1_mt2_100/hist1d_met_Sign_direct_slepton.pdf}
+    \caption{Missing transverse energy significance}
+    \label{fig:my_label}
+    \end{subfigure}
+    \caption{Plot of the four most important variables in direct slepton production with a cut on $m_{T_2} > 100$ GeV in addition to the previous cuts.}
+    \label{fig:slepslep5th_1_cut}
+\end{figure}
+
+
+After adding all of the cuts mentioned above we can see that the signal almost no longer is present which is pretty bad when we want to see if the data follows the signal or the background. Since this isn't working that well, we are going to try to see if cuts found by ML is a better solution. 
+
+\end{comment}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{comment}
+
+
+\begin{figure}[H]
+%\begin{minipage}{2\textwidth}
+%\begin{adjustwidth}{-3cm}{-3cm}
+\centering
+%\advance\leftskip-4cm 
+%\advance\rightskip-4cm 
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_mll_direct_slepton.pdf}
+%    \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_met_Et_direct_slepton.pdf}
+ %   \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_mt2_direct_slepton.pdf}
+  %  \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_nBJet20_MV2c10_FixedCutBEff_77_direct_slepton.pdf}
+  %  \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_nJet20_direct_slepton.pdf}
+%    \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_nJet30_direct_slepton.pdf}
+ %   \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+%\begin{minipage}{2\textwidth}
+%\begin{adjustwidth}{-3cm}{-3cm}
+\centering
+%\advance\leftskip-4cm 
+%\advance\rightskip-4cm 
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_lepPt[0]_direct_slepton.pdf}
+%    \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_lepPt[1]_direct_slepton.pdf}
+ %   \caption{Caption}
+    \\
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_lepPt_direct_slepton.pdf}
+  %  \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_pTdiff_direct_slepton.pdf}
+%    \caption{Caption}
+    \\
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_deltaRll_direct_slepton.pdf}
+ %   \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_deltaPhi_direct_slepton.pdf}
+  %  \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+%\begin{minipage}{2\textwidth}
+%\begin{adjustwidth}{-3cm}{-3cm}
+\centering
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_met_HT_direct_slepton.pdf}
+%    \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Figures/SlepSlep/CutAndCount/1stcut_2L+OS/hist1d_HT_direct_slepton.pdf}
+ %   \caption{Caption}
+    \label{fig:my_label}
+    \end{subfigure}
+%\end{adjustwidth}
+\end{figure}
+\end{comment}

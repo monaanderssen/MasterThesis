@@ -1,0 +1,120 @@
+\chapter{Introducing Machine Learning}
+%\label{sec:Methods}
+\label{sec:ML}
+In this chapter, we will get introduced to the different Machine Learning algorithms that are used in the analysis. 
+
+The future of scientific experiments faces a problem: on the one hand, we have more data than we ever have in the history of science. It opens up a whole new range of possibilities and increases the potential for new findings. On the other hand, the quantity of data is so vast that no human being, or group of human beings, could hope to sift through and analyze all the data in a single lifetime. However, it's not good enough to have a ``dumb'' computer algorithm sort through the data, since if the computer cannot adapt and pick out interesting features, a human would need to double check the results anyway. We need a technique that is both efficient and ``smart''. For this reason, and others, Machine Learning (ML) is fast becoming the standard way of analyzing data in science, and in high energy physics in particular. 
+
+Indeed, compared to the cut and count method, ML techniques are often a more efficient way to perform analyses. It can handle massive datasets and give results in a reasonable time frame. This is needed since the datasets have become increasingly large after each experimental upgrade at for e.g. the LHC. The ML methods are also usually more sensitive to the separation between the signal and the background (because it might pick out characteristics in the data that a human would never notice), which we are trying to optimize in our analysis. The regular cut and count analysis is performed by a person, and they analyze the data. For us, however, we will try to separate the signal from the background using ML algorithms. A discussion of these is presented in the following sections. 
+
+Broadly speaking, a ML algorithm can be explained as shown in figure \ref{fig:MLex}. We have an input variable X that we send into an ML model of our choice, and we get the actual output Y (the ML output) and the predicted output Y' (the output we expect). Let us say that we give the ML model a variable with label 1; then the predicted value is 1 and the actual output will (hopefully) be either 1 or close to 1.   
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/FromOnline/MLex.png}
+    \caption{A very simple illustration of an ML algorithm \cite{MLex}.}
+    \label{fig:MLex}
+\end{figure}
+
+
+\begin{comment}
+In this thesis we are, as mentioned earlier, focusing on using ML algorithms to find new optimal cuts. This is just one of many ways of using ML in particle physics. Another way is to use it for anomaly detection of new particles. In that instance, we train our ML algorithm on background and then it will tell you if it have found something that is not behaving like the known backgrounds. \improvement{Dette hører kanskje heller hjemme i en evt outlook??}
+\end{comment}
+
+
+\section{Machine learning basics}
+In this thesis, we are focusing on using ML algorithms to separate the signal from the background. This is done by the ML algorithms called Boosted Decision Trees (BDT) and Neural Networks (NN). Before we go into the specifics, we will give a short introduction to some ML basics.
+
+\subsection{Training and testing}
+\label{sec:TandT}
+To obtain our BDT and NN results, we have to split our datasets into training and test sets. We split the dataset into 2/3 for training and 1/3 for testing. It is common practice to divide the train and test set like this, but it is also possible to choose a smaller training set and bigger test set. The reason for doing this is that we want to check if our model is learning and is able to classify the background as background and the signal as signal - before we, in the end, give it actual data. 
+
+\subsubsection{Validation test}
+In addition to a standard test set, we need a validation set to avoid overtraining (this is not used to test whether the model works, but rather to prevent overfitting - see below). A validation set is a set that hasn't been used to train the algorithm. We use the validation set to see when the model cannot do better with calculating a validation loss, which is the loss for the validation set - and will be explained later in this chapter - for each epoch or estimator the network or BDT goes through. An epoch is the number of cycles the NN does the training and estimator is the number of the times we want to boost the tree. If the validation loss does not become better after e.g., ten steps, another function breaks the training before it has finished all of the epochs or estimators. This is done by a function called \textit{early stopping}, which stops the training. This is very useful for the NN and BDT since there is one less parameter we have to worry about, namely the epochs or estimators. We only have to set a value high enough for the model to get far enough through the training. 
+
+\subsection{Overfitting and underfitting}
+In ML we encounter a very common problem while training our model, namely overfitting and underfitting. The goal when training a model is to get it to fit the data as well as possible; but this training can't be too precise or the the model will be useless if your data doesn't look exactly the same the next time you are using it. That would lead to loss of generality and our model would become dataset specific. This is overfitting. Underfitting is of course the opposite problem: the model is too simple to adapt to slightly more complex datasets, and the algorithm will simply use a simple function to fit data. These ideas are very well illustrated in figure \ref{fig:overunderfitting}. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/FromOnline/overunderfitting.png}
+    \caption{An illustration of underfitting and overfitting \cite{overunderfittingpic}.}
+    \label{fig:overunderfitting}
+\end{figure}
+
+
+
+\subsection{Evaluating metrics}
+
+\subsubsection{Accuracy}
+In ML we have many ways to measure how well or badly our algorithm is performing; one of them is the \textit{accuracy} \cite{accuracy}. The accuracy expresses in percentage how accurate your algorithm is performing and can be calculated as
+
+\begin{equation}
+    \label{eq:acc}
+    accuracy = \frac{correct}{correct + incorrect},
+\end{equation}
+where \textit{correct} is all data points that are classified as true positives (TP) and \textit{incorrect} as false positives (FP)\footnote{\textit{True positives} are all the datapoints that are correctly classified as positives, while \textit{false positives} are the datapoints that are classified as positive when they actually are negative. The same labeling holds for the negative classifications (TN/FN).}. This could be the only metric needed to evaluate a model; it gives a very basic measure of how, well, accurate - or reliable - the ML model is. 
+
+\subsubsection{Loss and cost function}
+Earlier we mentioned a validation loss, which also is calculated for the whole training set during training. The loss is calculated for each estimator (BDT) and epoch (NN). The loss can be calculated in many different ways and we should choose the one best suited for the problem. In our case we want to classify the background and signal as two variables, namely 0 and 1. This means that we are looking at a binary classification problem and we can use a binary classification loss function \cite{Loss}, namely binary \textit{cross-entropy}. Mathematically it can be derived as follows. We have a true probability $p_i$ and a distribution of the predicted values $q_i$. The probability to get the outcome $y=1$ is given by
+
+\begin{equation}
+    \label{eq:prob1}
+    q_{y=1} = \Hat{y} = g(\textbf{w} \cdot \textbf{x}) = \frac{1}{1+e^{-\textbf{w} \cdot \textbf{x}}},
+\end{equation}
+where $\textbf{x}$ is a vector of input features, $\textbf{w}$ is a vector of optimized weights and $g(\textbf{w} \cdot \textbf{x})$ is a logistic function.
+
+To find the probability of $y=0$ we can write
+
+\begin{equation}
+    \label{eq:prob0}
+    q_{y=0} = 1- \Hat{y}.
+\end{equation}
+
+This gives us the notation setup, $p \in \{y, 1-y\}$ and $q \in \{\Hat{y}, 1-\Hat{y}\}$ and we can get the difference between $p$ and $q$ by using the cross-entropy $H(p,q)$, which leads to
+
+\begin{equation}
+    \label{eq:crossentropy}
+    H(p,q) = - \sum_i p_i log q_i = - y log \Hat{y} - (1-y) log(1-\Hat{y})
+\end{equation}
+
+While we are training, logistic regression optimizes the log loss $J$\footnote{Here the loss function is called the cost function $J$. This might be a bit confusing because the cost function is defined ass the loss function for all training sets, but in our case the loss and cost are the same.} which means that we optimize the cross-entropy in the sample. This is given by
+
+\begin{equation}
+    \label{eq:loss}
+    J(\textbf{w}) = \frac{1}{N} \sum_{n=1}^N H(p_n, q_n) = - \frac{1}{N} \sum_{n=1}^N \big[y_n log \Hat{y}_n + (1-y_n) log(1-\Hat{y}_n)\big],
+\end{equation}
+where $\Hat{y}_n$ is defined by equation \ref{eq:prob1}.
+
+Cross-entropy is the best loss function to use in our case and is the preferred function to use in similar cases. Ideally, the cross-entropy loss should be 0 during training - this corresponds to the minimum possible loss. In practice, this does not happen; in fact, a validation loss of 0 normally indicates a different problem  - likely overfitting. 
+
+
+\subsubsection{ROC-curve and AUC-score}
+To analyze our results from both ML algorithms, we are going to use the ROC-curve and the AUC-score, which is short for Receiver Operating Characteristic and Area Under Curve. AUC refers to the area under a ROC curve, and this curve is a plot of the True Positive Rate (TPR) against the False Positive Rate(FPR). TPR is the actual positives that are identified correctly, called \textit{signal efficiency}, and FPR is the rate between the negative events categorized as positive and the negative events. In figure \ref{fig:ROCAUCex}, we can see how this looks. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{Figures/FromOnline/ROCAUC.jpg}
+    \caption{An example of a ROC curve \cite{ROCAUC}.}
+    \label{fig:ROCAUCex}
+\end{figure}
+
+If we look at the green line in \ref{fig:ROCAUCex}, which is changing from model to model, we can see it has a smooth curve. If the green line creates a right angle in the top left corner, we will get an AUC score of 1, meaning the ML algorithm classifies correctly every signal and background event. In other words, the algorithm picks correctly every time. If the green line follows the diagonal dashed line, the algorithm is correct approximately 50 \% of the time, which is statistically the same as having the model randomly classify objects. If the curve is goes below the dashed line, the model classifies the background events as signal and the signal events as background, precisely the opposite of what we are trying to do. 
+
+
+
+
+
+
+
+
+
+
+\begin{comment}
+The use of machine learning (ML) is becoming the standard way of analysing data and interpreting various measurements and searches for new physics. ML is a more sophisticated method to do an analysis than the regular methods, such as the cut and count method. It is also usually more sensitive which gives us the opportunity to separate the signal from the background more efficiently than we do today.  We classify ML and specifically neural networks (NN) into two types, deep and shallow. Deep neural networks (DNN) is a NN with several hidden layers with quite few nodes/neurons in each layer. Shallow neural network (SNN) is a NN with only one hidden layer, but to obtain good results you need many more nodes/neurons in the hidden layer which gives us much more parameters to worry about. In this project we are going to concentrate on deep learning and compare the results with a simple SNN. 
+\end{comment}
+
+
+\input{Sections/Methods/BDT}
+
+\input{Sections/Methods/NN.tex}

@@ -1,0 +1,128 @@
+\documentclass[english]{report}
+\usepackage[utf8]{inputenc}
+%\usepackage[UKenglish]{duomasterforside}
+%\usepackage{siunitx}
+\RequirePackage[a4paper]{geometry}
+\geometry{twoside,vmargin=4.5cm,inner=4cm,outer=3cm}
+
+%\documentclass[reprint, nofootinbib]{revtex4-1}
+%\usepackage{scrextend}
+%% Mathematics
+\usepackage{amssymb}   % Extra symbols
+\usepackage{amsthm}    % Theorem-like environments
+\usepackage{thmtools}  % Theorem-like environments
+\usepackage{mathtools} % Fonts and environments for mathematical formuale
+\usepackage{mathrsfs}  % Script font with \mathscr{}
+\usepackage{bm}
+
+% For breaking url's at - too, not only \
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+
+
+
+\usepackage{unicode-math}
+%\setmathfont{XITSMath-Regular.otf}
+%\usepackage[bottom]{footmisc}
+%% Miscellanous
+\usepackage{graphicx}  % Tool for images
+\usepackage{siunitx}
+\usepackage{hyperref}
+\graphicspath{{figures/}}
+\usepackage[english]{babel}     % Automatic translations
+\usepackage{csquotes}  % Quotes
+\usepackage{textcomp}  % Extra symbols
+\usepackage{listings}  % Typesetting code
+%\lstset{basicstyle = \ttfamily, frame = tb}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+%\usepackage{subfig}
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{braket}
+
+%\documentclass[a4paper,12pt,twoside]{book}
+%\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+%\usepackage{fancyhdr}
+
+% Use more than one option in new command
+\usepackage{xargs} 
+
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{cite}
+% To write fancy notes in PDF
+\usepackage{todonotes}
+
+%Customized comments for the todonotes package
+% Normal use (add inline to usen in line and in figures etc: \todo[inline]{The original todo note withouth changed colours.} 
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+
+%\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[LE,RO]{Master thesis}
+%\fancyhead[RE,LO]{Mona Anderssen}
+%\fancyfoot[CE,CO]{\leftmark}
+%\fancyfoot[LE,RO]{\thepage}
+%\lstset{basicstyle = \ttfamily, frame = tb}
+%\setcounter{secnumdepth}{8}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{babel, duomasterforside}
+%\usepackage{subfig}
+%\usepackage{hyperref}
+
+%\usepackage{lipsum}
+\usepackage{mathrsfs}
+\pagenumbering{roman}
+
+\renewcommand{\chaptername}{}
+
+\title{Performance of deep learning in searches for new physics phenomena in events with leptons and missing transverse energy with the ATLAS detector at the LHC}
+\author{Mona Anderssen}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.5}
+%\baselinestretch
+\begin{document}
+{\setstretch{1.0}
+\duoforside[dept = {Department of Physics}, program = {Nuclear and particle physics}]
+}
+
+%\input{Sections/titlepage.tex}
+\input{Sections/Abstract.tex}
+\tableofcontents
+\listoftables
+\listoffigures
+\pagenumbering{arabic}
+%\input{Sections/Introduction.tex}
+
+%\input{Sections/Theory/Theory.tex}
+%\input{Sections/LHCandATLAS/LHCandATLAS}
+\input{Sections/Analysis/CandC}
+%\input{Sections/Methods/Methods.tex}
+%\input{Sections/Analysis/Analysis.tex}
+%\input{Sections/Results/Results.tex}
+%\input{Sections/Conclusion.tex}
+%\input{Sections/Appendix/Appendix}
+
+%###############
+% REFERENCES
+%###############
+%\section{References}
+\label{sec:references}
+
+\bibliographystyle{unsrt}
+\bibliography{ref}{}
+\end{document}
