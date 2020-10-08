@@ -293,7 +293,7 @@ The plots in figure \ref{fig:resLossAccExample} for every process will not be pr
 Now we know how a BDT and NN works and we are prepared on what we can expect of results. In this section we will get an understanding on how the BDT are built up, how we train it and, in the end, testing how well the training went.
 
 \subsection{Building}
-The BDT, as mentioned in chapter \ref{sec:BDT}, is built up using a existing python library called XGBoost. The variables I have to care about are listed in table \ref{tab:parametersBDT} below. 
+The BDT, as mentioned in chapter \ref{sec:BDT}, is built up using an existing python library called XGBoost. The parameters we have to care about are listed in table \ref{tab:parametersBDT} below. 
 
 
 %To obtain the results in figure \ref{fig:SlepSlepBDTLowLevelLowRaw} we have given the BDT some parameters which are listed in table \ref{tab:parametersBDT}. These parameters is simply found by trial and error with of course an indication on what magnitude we are going to be within. 
@@ -318,7 +318,7 @@ The BDT, as mentioned in chapter \ref{sec:BDT}, is built up using a existing pyt
     \label{tab:parametersBDT}
 \end{table}
 
-Most of these parameters are self explanatory, but not all of them so we will take a brief explanation before we move on. The first parameter that is not so intuitive is the verbosity level, which we set to let the BDT how much information we want from the tree during training. This can be set at 0, 1, 2 or 3, where 0 is silent, 3 is debug and 1 and 2 will give us parts of the information. It is nice to see what is going on during the training, so we have chosen to set it to 3. The next parameter we are going to explain is the objective, which specifies the learning task we are doing and the learning objective. As we can see in table \ref{tab:parametersBDT}, we have chosen to use something called \texttt{binary:logistic} which simply is a logistic regression for a binary classification. And last, we have the scale position weight which controls the balance between negative and positive weights in the tree. 
+Most of these parameters are self explanatory, but not all of them so we will take a brief explanation before we move on. The first parameter that is not so intuitive is the verbosity level, which we set to let the BDT know how much information we want from the tree during training. This can be set at 0, 1, 2 or 3, where 0 is silent, 3 is debug and 1 and 2 will give us parts of the information. It is nice to see what is going on during the training, so we have chosen to set it to 3. The next parameter we are going to explain is the objective, which specifies the learning task we are doing and the learning objective. As we can see in table \ref{tab:parametersBDT}, we have chosen to use something called \texttt{binary:logistic} which simply is a logistic regression for a binary classification. And last, we have the scale position weight which controls the balance between negative and positive weights in the tree. 
 
 In addition to the parameters that we have to give the BDT, we have different compositions of models we are training. As mentioned earlier in this chapter we are training on three different mass splittings (low, intermediate and high), but we are also training on high level, low level or all the features we listed up in table \ref{tab:features}. This is done to see how important the different features are during the next step, namely the training.
 
@@ -341,15 +341,15 @@ The main selection of results is done based on the AUC-score. If the AUC-score i
     \textbf{Level} & $\mathbf{\Delta m}$ & $\mathbf{\Tilde{l} \Tilde{l}}$ & $\mathbf{\Tilde{\chi}_1^\pm \rightarrow \Tilde{l}/\Tilde{\nu}}$ & $\mathbf{\Tilde{\chi}_1^\pm \rightarrow W^\pm}$ & \textbf{Mono-Z}  \\
     \midrule
     \midrule
-    \multirow{3}{*}{High} &  Low   & 0.92 & 0.92 & 0.91 & 0.95 \\
+    \multirow{3}{*}{High} &  Low   & 0.91 & 0.91 & 0.91 & 0.95 \\
      & Intermediate & 0.99 & 0.98 & 0.94 & 0.96 \\
      & High & 1.00 & 1.00 & 0.96 & 0.97 \\
      \midrule
-    \multirow{3}{*}{Low} & Low & 0.93 & 0.92 & 0.92 & 0.93 \\
-     & Intermediate & 0.99 & 0.98 & 0.95 & 0.96 \\
-     & High & 1.00 & 1.00 & 0.97 & 0.96 \\
+    \multirow{3}{*}{Low} & Low & 0.95 & 0.93 & 0.93 & 0.95 \\
+     & Intermediate & 0.99 & 0.98 & 0.95 & 0.97 \\
+     & High & 1.00 & 1.00 & 0.97 & 0.97 \\
      \midrule
-    \multirow{3}{*}{All} & Low & 0.95 & 0.94 & 0.94 & 0.96 \\
+    \multirow{3}{*}{All} & Low & 0.97 & 0.95 & 0.94 & 0.96 \\
      & Intermediate & 1.00 & 0.99 & 0.96 & 0.97 \\
      & High & 1.00 & 1.00 & 0.98 & 0.98 \\
      \bottomrule
@@ -377,7 +377,7 @@ As we can see in table \ref{tab:AUCBDT}, the preferred composition of features i
 
 
 \subsubsection{Low mass splittings}
-The first results from the BDT is for the BDTs trained on low mass splittings. The preferred composition of features is all features and in figure \ref{fig:AllLowfeatBDT} we can see how these different features contributes during training. 
+The first results presented is for the BDTs trained on low mass splittings. The preferred composition of features is all features and in figure \ref{fig:AllLowfeatBDT} we can see how these different features contributes during training. 
 
 
 \begin{figure}[H]
@@ -546,12 +546,12 @@ The last BDT we have trained is the one trained on high mass splittings. Here we
 \begin{figure}[H]
     \centering
     \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/BDT/All_level/High/featureImportance.pdf}
+        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/BDT/Low_level/High/featureImportance.pdf}
         \caption{Direct slepton production.}
         \label{fig:featSlepslepHigh}
     \end{subfigure}
     \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSnu/BDT/All_level/High/featureImportance.pdf}
+        \includegraphics[width = \textwidth]{Figures/SlepSnu/BDT/Low_level/High/featureImportance.pdf}
         \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
         \label{fig:featSlepsnuHigh}
     \end{subfigure}
@@ -576,12 +576,12 @@ As we can see in figure \ref{fig:AllHighfeatBDT}, the momentum for the leading l
 \begin{figure}[H]
     \centering
     \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/BDT/All_level/High/scaled_train_test_396033.pdf}
+        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/BDT/Low_level/High/scaled_train_test_396033.pdf}
         \caption{Direct slepton production.}
         \label{fig:SlepslepHigh}
     \end{subfigure}
     \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSnu/BDT/All_level/High/scaled_train_test_397169.pdf}
+        \includegraphics[width = \textwidth]{Figures/SlepSnu/BDT/Low_level/High/scaled_train_test_397169.pdf}
         \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
         \label{fig:SlepsnuHigh}
     \end{subfigure}
@@ -609,9 +609,8 @@ The BDT is in general performing good even though the separation of background a
 
 
 
-\section{Building, training and testing the NN}\improvement{Kommentar til Mona: Begrunn hvorfor vi ikke har feature importance for NN og at man da må ta en sjans på hvilke som er best når AUC er lik for to modeller. Plott kommer i morgen :D :D :D}
-
-In the following sections we are going to look at how the NN is built up, trained and tested before we in the end go to the last part of the ML where we are going to test the trained models on real data.
+\section{Building, training and testing the NN}
+In the following sections we are going to look at how the NN is built up, trained and tested before we in the end go to the last part of the ML where we are going to test both trained models on real data.
 
 \subsection{Building}
 As for the BDT, the NN uses some already existing libraries. The main parts of the building is covered in chapter \ref{sec:NN} and the parameters we us to optimize the NN is presented in table \ref{tab:parametersNN}.
@@ -638,24 +637,20 @@ As for the BDT, the NN uses some already existing libraries. The main parts of t
     \label{tab:parametersNN}
 \end{table}
 
-Most of the parameters are very self explanatory, but we are going to go through them step by step so we are sure that we have understood every one of them. The first one is the number of nodes which is the number of nodes in each layer and not the total number in the network. Then we have the number of hidden layers which is the number of how many layers we want inside the network in addition to the input and output layer. Dropout rate is a number between 0 and 1 and is taken into consideration if you want to drop a percentage of your input when you start training. As we can see, we have not used the dropout rate other than telling our NN that it should not drop any of the input, so we are not going to go into the advantages or disadvantages with using this. The next parameter is the batch size which is the number of iterations we go through the data we give the NN. This can be any value above 1 but it is popular to set it to a number of power of 2. The epochs and learning rate should be clear from chapter \ref{sec:NN}, where the epochs is not a very interesting parameter due to the early stopping and the learning rate gets optimized by Adam. The last two parameters we have to take into consideration is L1 and L2, which is what we call \textit{layer weight regularizes}. These are applied to add a penalty on the layers kernel. 
+Most of the parameters are very self explanatory, but we are going to go through them step by step so we are sure that we have understood every one of them. The first one is the number of nodes which is the number of nodes in each layer and not the total number in the network. Then we have the number of hidden layers which is the number of how many layers we want inside the network in addition to the input and output layer. Dropout rate is a number between 0 and 1 and is taken into consideration if you want to drop a percentage of your input when you start training. As we can see, we have not used the dropout rate other than telling our NN that it should not drop any of the input, so we are not going to go into the advantages or disadvantages with using this. The next parameter is the batch size which is the number of iterations we go through the data we give the NN. This can be any value above 1 but it is popular to set it to a number of power of 2. The epochs and learning rate should be clear from chapter \ref{sec:NN}, where the epochs is not a very interesting parameter due to the early stopping and the learning rate gets optimized by Adam. The last two parameters we have to take into consideration is L1 and L2, which is what we call \textit{layer weight regularizes}. These are applied to add a penalty on the layers kernel and are simply added as a term in the cost/loss function in equation \ref{eq:loss}.
+
+FOR NN USING RELU FOR INPUT AND HIDDEN LAYERS OG SIGMOID FOR OUTPUT LAYER
+As for the BDT, we have different compositions of mass splittings and features in the different NNs as well. 
 
 \subsection{Training}
+The training of the NN is the most time consuming step of all of the ML done in this thesis. It uses more time on solving the same problem as the BDT, which is one of the disadvantages of the NN compared to the BDT. The advantage is that the NN can do a better job than the BDT if we are able to choose the right parameters for training. Since the training of the NN takes some time, we have chosen to give it a patience on only 10 steps, instead of 20, because from a bit trial and error during working on this thesis we have concluded that when it has not approved in 10 steps, it won't improve much more after 20 either. So after 10 steps, the early-stopping will come in and stop the training and save the model at the best epoch. 
 
 \subsection{Testing}
-
-
-
-
-
-
-
-
-
-
+The next and second last step is to test the NN on our test set. This is again done on the same signal samples we used in the cut and count analysis. The results are presented with all four processes together with low, intermediate and high mass splittings and what features are decided on looking at the AUC-scores in table \ref{tab:AUCNN}.
 
 
 \subsubsection{AUC-score}
+In table \ref{tab:AUCNN} below, we can see the AUC-score for each process for all mass splittings and features. As we can see, there is several scores that are the same for the different features, but here we don't have the opportunity to look at the feature importance (because this is not relevant for NN) to make the decision. Instead we have chosen to show the same compositions as for the BDTs because the ones with the best score is also the one for the BDT. 
 
 \begin{table}[H]
     \centering
@@ -665,16 +660,16 @@ Most of the parameters are very self explanatory, but we are going to go through
     \textbf{Level} & $\mathbf{\Delta m}$ & $\mathbf{\Tilde{l} \Tilde{l}}$ & $\mathbf{\Tilde{\chi}_1^\pm \rightarrow \Tilde{l}/\Tilde{\nu}}$ & $\mathbf{\Tilde{\chi}_1^\pm \rightarrow W^\pm}$ & \textbf{Mono-Z}  \\
     \midrule
     \midrule
-    \multirow{3}{*}{High} &  Low   & 0.92 & 0.91 & 0.91 & 0.95 \\
-     & Intermediate & 0.99 & 0.97 & 0.94 & 0.96 \\
-     & High & 1.00 & 1.00 & 0.96 & 0.97 \\
+    \multirow{3}{*}{High} &  Low   & 0.91 & 0.90 & 0.90 & 0.94 \\
+     & Intermediate & 0.99 & 0.97 & 0.93 & 0.96 \\
+     & High & 1.00 & 1.00 & 0.96 & 0.96 \\
      \midrule
-    \multirow{3}{*}{Low} & Low & 0.94 & 0.92 & 0.92 & 0.95 \\
+    \multirow{3}{*}{Low} & Low & 0.96 & 0.93 & 0.93 & 0.96 \\
      & Intermediate & 0.99 & 0.98 & 0.95 & 0.97 \\
      & High & 1.00 & 1.00 & 0.97 & 0.97 \\
      \midrule
-    \multirow{3}{*}{All} & Low & 0.95 & 0.94 & 0.94 & 0.96 \\
-     & Intermediate & 0.99 & 0.98 & 0.95 & 0.97 \\
+    \multirow{3}{*}{All} & Low & 0.97 & 0.94 & 0.94 & 0.96 \\
+     & Intermediate & 1.00 & 0.98 & 0.96 & 0.97 \\
      & High & 1.00 & 1.00 & 0.97 & 0.98 \\
      \bottomrule
     \end{tabular}
@@ -689,59 +684,7 @@ Most of the parameters are very self explanatory, but we are going to go through
 
 
 \subsubsection{Low mass splittings}
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/NN/Low_level/Low/scaled_train_test_395984.pdf}
-        \caption{Direct slepton production.}
-        \label{fig:SlepslepNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSnu/NN/Low_level/Low/scaled_train_test_397115.pdf}
-        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
-        \label{fig:SlepsnuNNLow}
-    \end{subfigure}    
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/WW/NN/Low_level/Low/scaled_train_test_395268.pdf}
-        \caption{Chargino production via $W^\pm$.}
-        \label{fig:WWNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/Mono_Z/ML/NN/Low_level/Low/scaled_train_test_310604.pdf}
-        \caption{Mono-Z.}
-        \label{fig:MonoZNNLow}
-    \end{subfigure}
-    \caption{Test vs train for low mass splittings done with the NN. Here the test set is scaled up to match the number of training events.}
-    \label{fig:AllLowNN}
-\end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/NN/High_level/Low/scaled_train_test_395984.pdf}
-        \caption{Direct slepton production.}
-        \label{fig:SlepslepNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSnu/NN/High_level/Low/scaled_train_test_397115.pdf}
-        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
-        \label{fig:SlepsnuNNLow}
-    \end{subfigure}    
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/WW/NN/High_level/Low/scaled_train_test_395268.pdf}
-        \caption{Chargino production via $W^\pm$.}
-        \label{fig:WWNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/Mono_Z/ML/NN/High_level/Low/scaled_train_test_310604.pdf}
-        \caption{Mono-Z.}
-        \label{fig:MonoZNNLow}
-    \end{subfigure}
-    \caption{Test vs train for low mass splittings done with the NN. Here the test set is scaled up to match the number of training events.}
-    \label{fig:AllLowNN}
-\end{figure}
-
+The first results from the NN we are going to look at is the ones with low mass splittings and trained on all features. 
 
 \begin{figure}[H]
     \centering
@@ -769,6 +712,7 @@ Most of the parameters are very self explanatory, but we are going to go through
     \label{fig:AllLowNN}
 \end{figure}
 
+In figure \ref{fig:AllLowNN} we can see that it is pretty good agreement between test and training, but we don't have much signal for either of the four processes. 
 
 
 
@@ -786,58 +730,7 @@ Most of the parameters are very self explanatory, but we are going to go through
 
 
 
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/NN/Low_level/Inter/scaled_train_test_396014.pdf}
-        \caption{Direct slepton production.}
-        \label{fig:SlepslepNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSnu/NN/Low_level/Inter/scaled_train_test_397150.pdf}
-        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
-        \label{fig:SlepsnuNNLow}
-    \end{subfigure}    
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/WW/NN/Low_level/Inter/scaled_train_test_395320.pdf}
-        \caption{Chargino production via $W^\pm$.}
-        \label{fig:WWNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/Mono_Z/ML/NN/Low_level/Inter/scaled_train_test_310613.pdf}
-        \caption{Mono-Z.}
-        \label{fig:MonoZNNLow}
-    \end{subfigure}
-    \caption{Test vs train for low mass splittings done with the NN. Here the test set is scaled up to match the number of training events.}
-    \label{fig:AllLowNN}
-\end{figure}
 
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/NN/High_level/Inter/scaled_train_test_396014.pdf}
-        \caption{Direct slepton production.}
-        \label{fig:SlepslepNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSnu/NN/High_level/Inter/scaled_train_test_397150.pdf}
-        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
-        \label{fig:SlepsnuNNLow}
-    \end{subfigure}    
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/WW/NN/High_level/Inter/scaled_train_test_395320.pdf}
-        \caption{Chargino production via $W^\pm$.}
-        \label{fig:WWNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/Mono_Z/ML/NN/High_level/Inter/scaled_train_test_310613.pdf}
-        \caption{Mono-Z.}
-        \label{fig:MonoZNNLow}
-    \end{subfigure}
-    \caption{Test vs train for low mass splittings done with the NN. Here the test set is scaled up to match the number of training events.}
-    \label{fig:AllLowNN}
-\end{figure}
 
 
 \begin{figure}[H]
@@ -886,6 +779,12 @@ Most of the parameters are very self explanatory, but we are going to go through
 
 \subsubsection{High mass splittings}
 
+
+
+
+
+
+
 \begin{figure}[H]
     \centering
     \begin{subfigure}[t!]{0.49\textwidth}
@@ -897,61 +796,7 @@ Most of the parameters are very self explanatory, but we are going to go through
         \includegraphics[width = \textwidth]{Figures/SlepSnu/NN/Low_level/High/scaled_train_test_397169.pdf}
         \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
         \label{fig:SlepsnuNNLow}
-    \end{subfigure}    
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/WW/NN/Low_level/High/scaled_train_test_395330.pdf}
-        \caption{Chargino production via $W^\pm$.}
-        \label{fig:WWNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/Mono_Z/ML/NN/Low_level/High/scaled_train_test_310617.pdf}
-        \caption{Mono-Z.}
-        \label{fig:MonoZNNLow}
-    \end{subfigure}
-    \caption{Test vs train for low mass splittings done with the NN. Here the test set is scaled up to match the number of training events.}
-    \label{fig:AllLowNN}
-\end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/NN/High_level/High/scaled_train_test_396033.pdf}
-        \caption{Direct slepton production.}
-        \label{fig:SlepslepNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSnu/NN/High_level/High/scaled_train_test_397169.pdf}
-        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
-        \label{fig:SlepsnuNNLow}
-    \end{subfigure}    
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/WW/NN/High_level/High/scaled_train_test_395330.pdf}
-        \caption{Chargino production via $W^\pm$.}
-        \label{fig:WWNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/Mono_Z/ML/NN/High_level/High/scaled_train_test_310617.pdf}
-        \caption{Mono-Z.}
-        \label{fig:MonoZNNLow}
-    \end{subfigure}
-    \caption{Test vs train for low mass splittings done with the NN. Here the test set is scaled up to match the number of training events.}
-    \label{fig:AllLowNN}
-\end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSlep/ML/NN/All_level/High/scaled_train_test_396033.pdf}
-        \caption{Direct slepton production.}
-        \label{fig:SlepslepNNLow}
-    \end{subfigure}
-    \begin{subfigure}[t!]{0.49\textwidth}
-        \includegraphics[width = \textwidth]{Figures/SlepSnu/NN/All_level/High/scaled_train_test_397169.pdf}
-        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
-        \label{fig:SlepsnuNNLow}
-    \end{subfigure}    
+    \end{subfigure}      
     \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/WW/NN/All_level/High/scaled_train_test_395330.pdf}
         \caption{Chargino production via $W^\pm$.}
@@ -990,118 +835,39 @@ Most of the parameters are very self explanatory, but we are going to go through
 
 \begin{figure}[H]
     \centering
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_All_level_slepslep.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_Low_level_slepslep.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_High_level_slepslep.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-
-
-
-
-\begin{figure}[H]
-    \centering
+        \caption{Direct slepton production.}
+        \label{fig:SlepslepNNLow}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_All_level_slepsnu.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
+        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
+        \label{fig:SlepsnuNNLow}
+    \end{subfigure}      
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_Low_level_slepslep.pdf}
+        \caption{Direct slepton production.}
+        \label{fig:SlepslepNNLow}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_Low_level_slepsnu.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_High_level_slepsnu.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-
-
-
-
-
-
-
-\begin{figure}[H]
-    \centering
+        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
+        \label{fig:SlepsnuNNLow}
+    \end{subfigure}  
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_All_level_WW.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_Low_level_WW.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_High_level_WW.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-
-
-
-
-\begin{figure}[H]
-    \centering
+        \caption{Chargino production via $W^\pm$.}
+        \label{fig:WWNNLow}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_All_level_monoZ.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
+        \caption{Mono-Z.}
+        \label{fig:MonoZNNLow}
+    \end{subfigure}
+    \caption{Test vs train for low mass splittings done with the NN. Here the test set is scaled up to match the number of training events.}
+    \label{fig:AllLowNN}
 \end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_Low_level_monoZ.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_BDT_High_level_monoZ.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1113,102 +879,54 @@ Most of the parameters are very self explanatory, but we are going to go through
 
 \begin{figure}[H]
     \centering
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_All_level_slepslep.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_Low_level_slepslep.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_High_level_slepslep.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-
-
-
-
-\begin{figure}[H]
-    \centering
+        \caption{Direct slepton production.}
+        \label{fig:SlepslepNNLow}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_All_level_slepsnu.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
+        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
+        \label{fig:SlepsnuNNLow}
+    \end{subfigure}      
+    \begin{subfigure}[t!]{0.49\textwidth}
+        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_Low_level_slepslep.pdf}
+        \caption{Direct slepton production.}
+        \label{fig:SlepslepNNLow}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_Low_level_slepsnu.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_High_level_slepsnu.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-
-
-
-
-
-
-
-\begin{figure}[H]
-    \centering
+        \caption{Chargino production via $\Tilde{l}/\Tilde{\nu}$.}
+        \label{fig:SlepsnuNNLow}
+    \end{subfigure}      
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_All_level_WW.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_Low_level_WW.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_High_level_WW.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
-
-
-
-
-
-\begin{figure}[H]
-    \centering
+        \caption{Chargino production via $W^\pm$.}
+        \label{fig:WWNNLow}
+    \end{subfigure}
+    \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_All_level_monoZ.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
+        \caption{Mono-Z.}
+        \label{fig:MonoZNNLow}
+    \end{subfigure}
+    \caption{Test vs train for low mass splittings done with the NN. Here the test set is scaled up to match the number of training events.}
+    \label{fig:AllLowNN}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_Low_level_monoZ.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
 
-\begin{figure}[H]
-    \centering
-        \includegraphics[width = \textwidth]{Figures/Stacked/stackedplot_NN_High_level_monoZ.pdf}
-        \caption{}
-        \label{fig:traintestscaled}
-\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1374,5 +1092,3 @@ The next step is to do the actual ML which can be done by running the script \te
 
 
 
-
-FOR NN USING RELU FOR INPUT AND HIDDEN LAYERS OG SIGMOID FOR OUTPUT LAYER
