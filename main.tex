@@ -14,13 +14,13 @@
 \usepackage{mathtools} % Fonts and environments for mathematical formuale
 \usepackage{mathrsfs}  % Script font with \mathscr{}
 \usepackage{bm}
-
+%\usepackage{amsmath,amsfonts,amsthm,bm}
 % For breaking url's at - too, not only \
 \usepackage{url}
 \def\UrlBreaks{\do\/\do-}
-
-
-
+\usepackage{rotating}
+\usepackage[graphicx]{realboxes}
+\usepackage{adjustbox}
 \usepackage{unicode-math}
 %\setmathfont{XITSMath-Regular.otf}
 %\usepackage[bottom]{footmisc}
@@ -41,7 +41,7 @@
 \usepackage{setspace}
 \usepackage{comment}
 \usepackage{braket}
-
+\usepackage{lscape}
 %\documentclass[a4paper,12pt,twoside]{book}
 %\usepackage[utf8]{inputenc}
 %\usepackage[english]{babel}
@@ -88,7 +88,7 @@
 
 \renewcommand{\chaptername}{}
 
-\title{Performance of deep learning in searches for new physics phenomena in events with leptons and missing transverse energy with the ATLAS detector at the LHC}
+\title{Performance of Deep Learning in Searches for New Physics Phenomena in Events with Leptons and Missing Transverse Energy with the ATLAS Detector at the LHC}
 \author{Mona Anderssen}
 
 \setlength{\parindent}{0em}
@@ -106,15 +106,15 @@
 \listoftables
 \listoffigures
 \pagenumbering{arabic}
-%\input{Sections/Introduction.tex}
+\input{Sections/Introduction.tex}
 
-%\input{Sections/Theory/Theory.tex}
-%\input{Sections/LHCandATLAS/LHCandATLAS}
+\input{Sections/Theory/Theory.tex}
+\input{Sections/LHCandATLAS/LHCandATLAS}
 \input{Sections/Analysis/CandC}
-%\input{Sections/Methods/Methods.tex}
+\input{Sections/Methods/Methods.tex}
 \input{Sections/Analysis/Analysis.tex}
 \input{Sections/Results/Results.tex}
-%\input{Sections/Conclusion.tex}
+\input{Sections/Conclusion.tex}
 \input{Sections/Appendix/Appendix}
 
 %###############

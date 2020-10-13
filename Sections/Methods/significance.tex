@@ -1,16 +1,16 @@
 \section{Quantifying the sensitivity}
 \label{sec:significance}
 
-The goal in doing this analysis is to ensure that the model is sensitive to discover new physics and in the end claim discovery of new particles. To check if we have succeeded on making our model sensitive to new physics we can check the p-values and significance in our signal region. 
+The overall goal with the analysis carried out in this thesis is to optimize the sensitivity to discover new physics and possibly in the end to claim discovery of new particles. To check if we have succeeded in making our model sensitive to new physics we can check the expected p-values and significances for our signal region. 
 
-Every event in the signal region will have a probability to pass the cuts we apply in the cut and count analysis. This gives us a binomial distribution of probabilities for finding $n$ events in our region, and is given by equation \ref{eq:pval1}. 
+Each event in the data will either pass or fail the cuts defining the signal region used in the analysis. The number of events therefore follows a binomial distribution, and the probability of finding $n$ events in our region is given by equation \ref{eq:pval1}. 
 
 \begin{equation}
     \label{eq:pval1}
     P(n|N, p) = \frac{N!}{n!(N-n)!} p^n(1-p)^{N-n},
 \end{equation}
 
-where $N$ is the number of total events and p is the probability for the event to pass the cuts. If the number of total events gets very big and the probability $p$ gets very small, we can express equation \ref{eq:pval1} as a Poisson distribution instead, which is given by
+where $N$ is the number of total events and p is the probability for the event to pass the cuts. If the number of total events gets very big and the probability $p$ gets very small, we can approximate equation \ref{eq:pval1} as a Poisson distribution, which is given by
 
 \begin{equation}
     \label{eq:pval2}
@@ -19,7 +19,7 @@ where $N$ is the number of total events and p is the probability for the event t
 
 where $\nu$ is given by a hypothesis. This equation (eq. \ref{eq:pval2}) gives us a probability of $n$ observed events when the expectation is to observe $\nu$ events. 
 
-When we are talking about hypotheses in this thesis, we are talking about \textit{background-only} (b-only) and \textit{signal + background} (s+b) hypotheses. The b-only hypothesis is the SM, which is a well known theory. We are going to check this upon the s+b hypothesis which in our case will be one of the three SUSY processes or the mono-Z process. This gives us the opportunity to introduce the p-values. A p-value is a measure to judge the deviation of the observed number of events from the b-only hypothesis expectations. If we assume that only the SM processes contribute we can use the p-value to get the probability of observing as many, or more, events as we can find in the data. With a perfectly known background the p-value can be found by
+When we are talking about hypotheses in this thesis, we are talking about \textit{background-only} (b-only) and \textit{signal + background} (s+b) hypotheses. The b-only hypothesis is the SM, which is a well known theory. We are going to check this against the s+b hypothesis which in our case will be one of the three SUSY processes or the mono-Z process. This gives us the opportunity to introduce the p-values. A p-value is a measure to judge the deviation of the observed number of events from the b-only hypothesis expectations. If we assume that only the SM processes contribute we can use the p-value to get the probability of observing as many, or more, events as we can find in the data. With a perfectly known background the p-value can be found by
 
 \begin{equation}
     \label{eq:pvalues}
@@ -27,28 +27,28 @@ When we are talking about hypotheses in this thesis, we are talking about \texti
 \end{equation}
 
 
-where $f(n;b)$ is the Poisson distribution given in equation \ref{eq:pval2}. It is usual to convert the p-value into an observed significance $z$ with a unit Gaussian $\Phi$. This is given by
+where $f(n;b)$ is the Poisson distribution given in equation \ref{eq:pval2}. It is common to convert the p-value into an observed significance $z$ with a unit Gaussian $\Phi$. This is given by
 
 \begin{equation}
-    \label{eq:signif}
+    \label{eq:signifobs}
     z = \Phi^{-1}(1-p)
 \end{equation}
 
- and the unit is expressed with a $\sigma$ as in number of standard deviations from the center of the Gaussian distribution. To claim discovery of a new particle we need an observed significance above 5 $\sigma$. We are not going to check the observed significance in this thesis, but calculate the expected significance to see if there is any hope to discover new physics in the hypotheses we are looking at. The expected significance is the significance associated with the median number of expected events under the s+b hypothesis. It gives us a number on how well the two hypothesis we are looking at are separated. This is given by equation \ref{eq:signif}, where the p-value now is expressed as a \textit{confidence level} (CL) given as
+ and the unit is expressed with a $\sigma$ as in number of standard deviations from the center of the Gaussian distribution. To claim discovery of a new particle we need an observed significance above 5 $\sigma$. We are not going to check the observed significance in this thesis, but calculate the expected significance to see if there is any hope to discover new physics for the models we are looking at. The expected significance is the significance associated with the median number of expected events under the s+b hypothesis. It gives us a number on how well the two hypotheses we are looking at are separated. This is given by equation \ref{eq:signif}, where the p-value now is expressed as a \textit{confidence level} (CL) given as
  
  \begin{equation}
     \label{eq:CL}
     CL_{s+b} = \sum_{n=0}^{q_{obs}} \frac{(s+b)^n}{n!} e^{-(s+b)},
  \end{equation}
 
-where $q_{obs}$ is the number of observed events if the s+b hypothesis is true. If the $CL_{s+b}$ is below 5\% we exclude that we can find any new physics with the selection criteria we have given it. Putting equation \ref{eq:signif} and \ref{eq:CL} together we get the expression
+where $q_{obs}$ is the number of observed events. If the $CL_{s+b}$ is below 5\% we exclude that we can find any new physics with the selection criteria we have given it. Putting equation \ref{eq:signifobs} and \ref{eq:CL} together we get the expression
 
 \begin{equation}
     \label{eq:signif}
     Z_N = \Phi^{-1}(1-CL_{s+b}),
 \end{equation}
 
-where $Z_N$ is the expected significance. To claim exclusion in the signal region we need a $CL_{s+b} \leq$ 5\% which corresponds to $Z_N \leq 1.64 \sigma$. In this thesis is the $Z_N$ are calculated by an already existing tool in ROOT called \texttt{RooStats.NumberCountingUtils.BinomialExpZ} which simply takes the number of events for both background and signal as input together with a fractional background uncertainty on e.g. 20\%.
+where $Z_N$ is the expected significance. To claim exclusion in the signal region we need a $CL_{s+b} \leq$ 5\% which corresponds to $Z_N \leq 1.64 \sigma$. In this thesis the $Z_N$ is calculated by an already existing tool in ROOT called \texttt{RooStats.NumberCountingUtils.BinomialExpZ} which simply takes the number of events for both background and signal as input together with a fractional background uncertainty of e.g. 20\%.
 
 
 

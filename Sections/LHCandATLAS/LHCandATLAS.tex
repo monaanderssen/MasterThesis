@@ -7,3 +7,10 @@ The data used in this thesis comes from the Atlas experiment at LHC. In this cha
 \input{Sections/LHCandATLAS/LHC}
 
 \input{Sections/LHCandATLAS/ATLAS}
+
+
+
+\section{Computing infrastructure}
+The results obtained in this thesis have been very comprehensive when it comes to computing power. It has not been possible to run the code on a regular computer because of not enough CPU's and memory. Because of these problems we have borrowed a server at Simula Research Laboratory, where we got to use the Experimental Infrastructure for Exploration of Exascale Computing. This is a computer with two sockets with 8 cores/CPU's, which again have two threads. This gives us in all 32 virtual CPU's (16 physical) because of hyper-threading in each CPU. It also have 60 GiB\footnote{GiB is Gibibyte instead of regular gigabyte and is simply a unit byte for digital information and means 2 to the power of 10 (kiB), 20 (MiB), 30 (GiB), 40 (TiB) and 50 (PiB).} memory, which have been crucial to handle the data used in ML. With this setup, the import of the data, training and testing have taken approximately 12-13 days, where 7 of these are just for importing the data. All together we have trained and tested 72 ML models (36 BDTs and 36 NNs) and the data sets we have been working on have been massive, where the memory have come in handy. 
+
+In the final run-up of this thesis we have used a server that is in possession of the HEPP-group at UiO. It is a Supermicro Ultra Server with both GPU's and CPU's, but we have only taken advantage of the CPU's in this thesis. This server is a much more powerful computer than the one borrowed at Simula. It has two sockets with 128 cores/CPU's, which also have two threads in each CPU. This gives us a total of 256 virtual CPU's. It also has 2 TiB memory, which has resulted in that we could import the data in several parts and be done in around 3 days instead of a week. And we have been able to train around 18-20 ML models at the same time instead of 1-2 which was the maximum for the Simula server. 

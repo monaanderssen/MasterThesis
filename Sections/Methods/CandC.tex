@@ -1,9 +1,8 @@
 
 
-The processes we are interested in looking at in this thesis involve superpartners of leptons, gauge bosons, and the Higgs boson. Besides this, we will look at a dark matter particle candidate, which is predicted to be the lightest supersymmetric particle (LSP).  This thesis looks at proton-proton collisions with final state two leptons and missing transverse energy (MET/$E_T^{miss}$). The SUSY processes we are looking at are direct slepton production, chargino production with slepton/sneutrino-mediated-decays and with W-boson-mediated-decays. 
+In this thesis we are interested in processes involving superpartners of leptons, gauge bosons, and the Higgs boson. Besides this, we will look at a dark matter particle candidate, which is predicted to be the lightest supersymmetric particle (LSP). This thesis looks at data from proton-proton collisions at the LHC in final states of two leptons and missing transverse energy (MET/$E_T^{miss}$). The SUSY processes we are looking at are direct slepton production, chargino production with slepton/sneutrino-mediated-decays and with W-boson-mediated-decays. 
 
-
-In figure \ref{fig:SlepSlepFeynman} below, we can see the direct slepton production as a production of two hypothetical sleptons which decay to the final state, comprising of two leptons and missing transverse energy (i.e. missing energy in the detector). The neutralinos, which are the MET in this process, are a mixture of the sparticles photino, zino, and higgsino and is also one of the dark matter candidates mentioned above.  
+Figure \ref{fig:SlepSlepFeynman} shows direct slepton production with the sleptons decaying to a final state with two leptons and missing transverse energy (i.e. missing energy in the detector) from the lightest neutralino ($\tilde{\chi}_1^0$). The neutralino is stable and not measured directly by the detector. Its energy is therefore interpreted as MET in this process. The neutralinos are a mixture of the sparticles photino, zino, and neutral higgsino components. Since it is believed to be 100\% stable  it is a perfect dark matter candidate as mentioned above.  
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.4\textwidth]{Figures/FeynmanDiagrams/SlepSlepFeynman.png}
@@ -11,7 +10,7 @@ In figure \ref{fig:SlepSlepFeynman} below, we can see the direct slepton product
     \label{fig:SlepSlepFeynman}
 \end{figure}
 
-In figure \ref{fig:SlepSnuFeynman} and \ref{fig:WWFeynman} we can see the chargino production with  slepton/sneutrino-mediated-decays and with W-boson-mediated-decays. Charginos are a mixture of the sparticles wino and the charged higgsino. These processes have the same final state as direct slepton production, but here the neutrinos are also a part of the MET, since we can't actually detect them in the detector. 
+In Figures \ref{fig:SlepSnuFeynman} and \ref{fig:WWFeynman} chargino production with slepton/sneutrino-mediated-decays and W-boson-mediated-decays are shown, respectively. Charginos are a mixture of the sparticles wino and the charged higgsino components. These processes have the same final state as direct slepton production, but here the neutrinos also contribute to the MET, since we can not detect them in the detector. 
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.4\textwidth]{Figures/FeynmanDiagrams/SlepSnuFeynman.png}
@@ -26,7 +25,7 @@ In figure \ref{fig:SlepSnuFeynman} and \ref{fig:WWFeynman} we can see the chargi
     \label{fig:WWFeynman}
 \end{figure}
 
-The DM process we are looking at in this thesis is the mono-Z process shown in figure \ref{fig:monoZFeynman2}. Here we have a mediator V which decays into the DM particles $\chi$ and a W/Z that decays into two leptons. This gives us the same final state as we had for the SUSY processes.  
+The DM process we are looking at in this thesis is the mono-Z process shown in figure \ref{fig:monoZFeynman2}. Here we have a mediator V which decays into two DM particles $\chi$. In addition we can have a Z, radiated from one of the initial state particles, which subsequently decays into two leptons. This gives us the same final state as we had for the SUSY processes above.  
 
 \begin{figure}[H]
     \centering
@@ -36,17 +35,17 @@ The DM process we are looking at in this thesis is the mono-Z process shown in f
 \end{figure}
 
 
-\section{MC simulated events}
+\section{Monte Carlo simulated events}
 
-The data taken into consideration is from the ATLAS experiment at LHC between 2015-2018 (Run 2), further explained in chapter \ref{sec:LHCandATLAS}. But, we are also looking at some MC simulated background and signal which will be explained in this section. The explanations are taken from the publications from ATLAS, namely \cite{sleptonexclusion} for the SUSY signals and \cite{monoZexclusion} for the mono-Z signal. We present an overview of what signal samples that are used in table \ref{tab:directslepLOW} - \ref{tab:MonoZHigh} in section \ref{sec:sigsamptab}. 
+The data considered is recorded by the ATLAS experiment at the LHC between 2015 and 2018 (Run 2), further explained in chapter \ref{sec:LHCandATLAS}. But, we are also looking at some MC simulated backgrounds and signals which will be explained in this section. The explanations are taken from the publications from ATLAS, namely \cite{sleptonexclusion} for the SUSY signals and \cite{monoZexclusion} for the mono-Z signal. Tables \ref{tab:directslepLOW} - \ref{tab:MonoZHigh} in section \ref{sec:sigsamptab} present an overview of the signal samples that are used.. 
 
-The SUSY signal samples were generated from leading-order (LO) matrix elements with up to two extra partons using \textsc{MadGraph5\_aMC@NLO 2.6.1} \cite{48} interfaced to \textsc{Pythia 8.186} \cite{49}, with the A14 tune \cite{50}, for the modelling of the SUSY decay chain, parton showering, hadronisation and the description of the underlying event. Parton luminosities were provided by the NNPDF2.3LO PDF set \cite{51}. Jet–parton matching was performed following the CKKW-L prescription \cite{52}, with a matching scale set to one quarter of the mass of the pair-produced SUSY particles. Signal cross-sections were calculated to next-to-leading order (NLO) in $\alpha_s$ adding the resummation of soft gluon emission at next-to-leading-logarithm accuracy(NLO+NLL) \cite{53,54,55,56,57,58,59}. The nominal cross-sections and their uncertainties were taken from an envelope of cross-section predictions using different PDF sets and factorisation and renormalisation scales, as described in Ref. \cite{60}. 
-
-
-To study the invisible Higgs boson decays, Monte Carlo events are produced for the SM ZH process with a subsequent Z boson decay into a dilepton pair and the H$\rightarrow$ZZ$\rightarrow \nu \nu \nu \nu$ decay (ZH$\rightarrow ll$+inv). The ZH signal processes from both the quark–antiquark (qqZH) and gluon–gluon (ggZH) initial states are modelled with \textsc{Powheg-Box v2} \cite{49Z, 50Z} using the CT10 \cite{51Z} parton distribution function (PDF) and interfaced to \textsc{Pythia8.186} \cite{52Z} for parton showering. The kinematic distributions of ZH$\rightarrow ll$ +inv events are described at next-to-leading-order (NLO) in QCD. Additionally, for the qqZH process, the MINLO \cite{53Z} method is applied to improve the gluon resummation calculation, and the $p_T^Z$ distribution is corrected to NLO electroweak (EW) accuracy with a reweighting approach detailed in Ref. \cite{3Z}. The SM ZH production cross-section is computed with next-to-next-to-leading-order (NNLO) QCD and NLO EW precision and found to be 884 fb \cite{3Z} with $m_H = 125$ GeV at 13 TeV. The DM signal is modelled with the leading-order \textsc{MadGraph5\_aMC@NLO} matrix element \cite{54Z} using NNPDF3.0 \cite{55Z} and showered with Pythia8.186. DM signal events with an axial-vector mediator and fermionic WIMPs are produced for different $m_{med}$ and $m_\chi$, both in a range from 10 to 1000 GeV.  As recommended in Ref. \cite{44Z}, the DM events are generated by choosing $g_q = 0.25$, $g_\chi = 1$, and a minimal mediator width. The AZNLO \cite{56Z} and A14 \cite{57Z} parameter sets are used to tune the \textsc{Pythia8.186} parton-shower for the simulation of the ZH $\rightarrow ll$+inv and DM signals, respectively.
+The SUSY signal samples were generated from leading-order (LO) matrix elements with up to two extra partons using \textsc{MadGraph5\_aMC@NLO 2.6.1} \cite{48} interfaced to \textsc{Pythia 8.186} \cite{49}, with the A14 tune \cite{50}, for the modelling of the SUSY decay chain, parton showering, hadronisation and the description of the underlying event. Parton luminosities were provided by the NNPDF2.3LO PDF set \cite{51}. Signal cross-sections were calculated to next-to-leading order (NLO) in $\alpha_s$. The nominal cross-sections and their uncertainties were taken from an envelope of cross-section predictions using different PDF sets and factorisation and renormalisation scales, as described in Ref. \cite{60}. 
 
 
-The different backgrounds that we are considering are diboson, triboson, $t\Bar{t}$, single top, other top events ($t\Bar{t}$ events with a pair of leptons or boson(s)), Higgs, Drell-Yan, Z+jets and W+jets. The MC samples are simulated using different generators that are listed up in table \ref{tab:bkg_samples}. The goal is to separate these backgrounds from the signals we are looking at, which consist in the four different processes that we looked at earlier in this chapter. 
+The DM signal is modelled with the leading-order \textsc{MadGraph5\_aMC@NLO} matrix element \cite{54Z} using NNPDF3.0 \cite{55Z} and showered with Pythia8.186. DM signal events with an axial-vector mediator and fermionic WIMPs are produced for different $m_{med}$ and $m_\chi$, both in a range from 10 to 1000 GeV.  As recommended in Ref. \cite{44Z}, the DM events are generated by choosing $g_q = 0.25$, $g_\chi = 1$, and a minimal mediator width. The A14 \cite{57Z} parameter set is used to tune the \textsc{Pythia8.186} parton-shower for the simulation of the DM signal.
+
+
+The different SM backgrounds we consider are diboson, triboson, $t\Bar{t}$, single top, other top events ($t\Bar{t}$ events with a pair of leptons or boson(s)), Higgs, Drell-Yan, Z+jets and W+jets. The MC samples are simulated using different generators that are listed in table \ref{tab:bkg_samples}. The goal is to separate these backgrounds from the signal processes discussed earlier in the chapter. 
 
 \begin{table}[H]
     \centering
@@ -69,10 +68,15 @@ The different backgrounds that we are considering are diboson, triboson, $t\Bar{
     \label{tab:bkg_samples}
 \end{table}
 
+Before we move to the analysis searching for SUSY and DM signals exploiting machine learning techniques we need to make sure that our input (i.e data, background and signal MC) looks reasonable. We also need a baseline analysis to check whether or not the ML analysis perform better than the more standard cut and count analysis, which will be outlined in the following sections.
 
-Before we move on to how we perform the analysis, we also need to know how we are going to know that we see SUSY and DM particles in the detector. Since they never have been discovered, we have to lean on some hypotheses on how this is happening. As for all events in the detector, we have to reconstruct the events using their decays. The supersymmetric particles are expected to decay into cascades that will contain a LSP which will interact very weakly with the detector material which again will result in a big measured MET in the detector. The rest of the cascade will result in a final state with with leptons and/or jets. Together with the MET this gives us the final state we are looking for. For the mono-Z process we can measure the MET from the DM particles decayed from the unknown hypothetical mediator particle. Together with the leptons we get from the decay of the Z-boson, this gives us the same final state as for the SUSY processes.
+
+\begin{comment}
+
+Before we move to how we perform the analysis, we also need to know how we are going to know that we see SUSY and DM particles in the detector. Since they never have been discovered, we have to lean on some hypotheses on how this is happening. As for all events in the detector, we have to reconstruct the events using their decays. The supersymmetric particles are expected to decay into cascades that will contain an LSP which will interact very weakly with the detector material which again will result in large MET in the detector. The rest of the cascade will result in a final state with leptons and/or jets. Together with MET this gives us the final state we are looking for. For the mono-Z process we can measure the MET from the DM particles decayed from the unknown hypothetical mediator particle. Together with the leptons we get from the decay of the Z-boson, this gives us the same final state as for the SUSY processes.
 
 
+\end{comment}
 
 
 

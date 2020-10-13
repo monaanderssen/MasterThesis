@@ -1,6 +1,6 @@
-\chapter{Cut and count and ML comparison (Temp title)}
+\chapter{Comparison of ML and Cut and Count (This is the shit, should find better title)}
 \label{sec:results}
-Now we have looked at how .........................
+Until this point we have looked at how well the different analyses perform on the same dataset and we are now going to see how sensitive they are to the signal samples we have chosen. To be able to do this we have to know how we can quantify the sensitivity before we move on to our results. 
 %\input{Sections/Results/CutAndCount/SlepSlep}
 %\input{Sections/Results/CandC}
 
@@ -8,60 +8,38 @@ Now we have looked at how .........................
 
 \input{Sections/Methods/significance}
 
-\section{Direct slepton production}
+
+
+\section{Results}
+In this section the results of the expected significance for all four processes and the three analysis methods are presented. They are calculated as described in the previous section, but for the ML methods we have done one more step. We have found where we can get most sensitivity for the three benchmark signals for each process by looking at each bin in figure \ref{fig:BDTdataAll} and \ref{fig:NNdataAll}. This is done by calculating the significance for all bins, then cut away the first bin, then the second bin and so on. Then we see which bin we got the best significance at, and use this bin to calculate the significance for all signals in the respective mass splitting. Which bin that is used for each optimization varies a bit, but is usually within the last 1/10 of the bins in figure \ref{fig:BDTdataAll} and \ref{fig:NNdataAll}. This we can also expect since we can see that we have a lot more signal in this region of the output than in the first bins. 
+
+\subsection{Direct slepton production}
 \label{sec:resSlepSlep}
+The first results we are going to look at is for the direct slepton production. The results are presented in figure \ref{fig:signAllSlepSlep}, where we have the mass of the slepton on the x-axis and the mass of the neutralino on the y-axis. 
+
 \begin{figure}[H]
     \centering
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significanceCutandCount_slepslep_all.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
+    \caption{Cut and count.}
+        \label{fig:signAllSlepSlepcandc}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_slepslep_All_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_slepslep_Low_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_slepslep_High_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-
-\begin{figure}
-    \centering
+    \caption{Boosted Decision Tree.}
+        \label{fig:signAllSlepSlepBDT}
+    \end{subfigure}      
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_slepslep_All_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
+    \caption{Neural Network.}
+        \label{fig:signAllSlepSlepNN}
+    \end{subfigure}
+    \caption{Significance plots for direct slepton production where all features are used during training the ML models.}
+    \label{fig:signAllSlepSlep}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_slepslep_Low_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_slepslep_High_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
+This figure shows the expected significance for cut and count (\ref{fig:signAllSlepSlepcandc}), BDT (\ref{fig:signAllSlepSlepBDT}) and NN (\ref{fig:signAllSlepSlepNN}). The color bar is fixed in all plots to make it easier to compare the different results. As we can see, the expected significance is greater for several signal samples for both the BDT and NN than for the cut and count method. In particular, signal samples with low mass splittings ($\Delta m \leq 100$ GeV) show big improvements for both ML methods compared to cut and count. As stated in section \ref{sec:summary_ML} signals with low mass splittings are particularly hard to distinguish from SM background, making these results very interesting.
 
 
 
@@ -74,68 +52,34 @@ Now we have looked at how .........................
 
 
 
-
-
-
-\section{Chargino pair via slepton or sneutrino}
+\subsection{Chargino pair with slepton/sneutrino-mediated-decay}
 \label{sec:resC1C1_SlepSnu}
 
+The results for the chargino production with slepton/sneutrino-mediated-decay are presented in figure \ref{fig:signAllslepsnu}. Here are the x-axis the mass of the chargino, while the y-axis remains the mass of the neutralino.
+
 \begin{figure}[H]
     \centering
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significanceCutandCount_slepsnu_all.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-
-
-
-\begin{figure}
-    \centering
+    \caption{Cut and count.}
+        \label{fig:signAllslepsnucandc}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_slepsnu_All_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_slepsnu_Low_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_slepsnu_High_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-
-\begin{figure}
-    \centering
+    \caption{Boosted Decision Tree.}
+        \label{fig:signAllslepsnuBDT}
+    \end{subfigure}      
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_slepsnu_All_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
+    \caption{Neural Network.}
+        \label{fig:signAllslepsnuNN}
+    \end{subfigure}
+    \caption{Significance plots for chargino production with slepton/sneutrino-mediated-decay where all features are used during training the ML models.}
+    \label{fig:signAllslepsnu}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_slepsnu_Low_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_slepsnu_High_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
+Figure \ref{fig:signAllslepsnu} shows the expected significance for all three analysis methods used in this thesis. As for the direct slepton production, we can see that the ML have a greater sensitivity than the cut and count. The ML methods also have a greater sensitivity for low mass splittings ($\Delta m < 200$ GeV) compared to cut and count. 
 
 
 
@@ -161,62 +105,38 @@ Now we have looked at how .........................
 
 
 
-\section{Chargino pair via W-bosons}
+
+
+
+
+\subsection{Chargino pair with W-boson-mediated-decay}
 \label{sec:resC1C1_WW}
+
+The next results we are going to look at are for the chargino production with W-boson-mediated-decay, which are presented in figure \ref{fig:signAllWW}. The x- and y-axis are the same as for the chargino production with slepton/sneutrino-mediated-decay. 
+
 \begin{figure}[H]
     \centering
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significanceCutandCount_WW_all.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-
-\begin{figure}
-    \centering
+    \caption{Cut and count.}
+        \label{fig:signAllWWcandc}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_WW_All_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_WW_Low_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_WW_High_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-
-\begin{figure}
-    \centering
+    \caption{Boosted Decision Tree.}
+        \label{fig:signAllWWBDT}
+    \end{subfigure}      
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_WW_All_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
+    \caption{Neural Network.}
+        \label{fig:signAllWWNN}
+    \end{subfigure}
+    \caption{Significance plots for chargino production with W-boson-mediated-decay where all features are used during training the ML models.}
+    \label{fig:signAllWW}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_WW_Low_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_WW_High_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
+From figure \ref{fig:signAllWW}, we can easily see that the sensitivity are better for most signal samples for the ML methods than the cut and count method. However, the sensitivity all over is not that good, and we should not expect to do any discovery at any mass splitting. 
 
 
 
@@ -240,72 +160,67 @@ Now we have looked at how .........................
 
 
 
-\section{Mono-Z}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Mono-Z}
 \label{sec:resMono-Z}
+
+The last results we are going to look at is for the mono-Z process. The results are presented in figure \ref{fig:signAllmonoZ}, where we have the mass of the mediator on the x-axis and the mass of the DM particle on the y-axis. 
+
 \begin{figure}[H]
     \centering
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significanceCutandCount_monoZ_all.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-
-\begin{figure}
-    \centering
+    \caption{Cut and count.}
+        \label{fig:signAllmonoZcandc}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_monoZ_All_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_monoZ_Low_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_BDT_monoZ_High_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-
-
-\begin{figure}
-    \centering
+    \caption{Boosted Decision Tree.}
+        \label{fig:signAllmonoZBDT}
+    \end{subfigure}      
+    \begin{subfigure}[t!]{0.49\textwidth}
     \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_monoZ_All_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
+    \caption{Neural Network.}
+        \label{fig:signAllmonoZNN}
+    \end{subfigure}
+    \caption{Significance plots for the mono-Z process where all features are used during training the ML models.}
+    \label{fig:signAllmonoZ}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_monoZ_Low_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
+The figure shows that the cut and count method are somewhat sensitive to signals with low mass splittings ($\Delta m < 100$ GeV). However, the ML methods are still more sensitive to a wider range of signals with low mass splittings. 
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{Figures/Significances/significance_NN_monoZ_High_level.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
+
+\subsection{Summarizing the results}
+Overall the ML methods have better sensitivity compared to the cut and count method, especially for low mass splittings. This is also the case for the ML methods trained on low level and high level features, but they are not as good as the ones trained on all features. These results can be found in appendix \ref{sec:appsignificance}. 
 
 
 
 
+\begin{comment}
+
+- Dir slep: I LL  har ML litt dårlig sensitivitet en AL, HL har enda dårligere - forventet pga dir slep. Høy level variabler med her er ikke relevante for prosess. 
+
+-Slep/snu: I LL  har ML hakket dårlig sensitivitet en AL, HL er ok, ikke så stor forskjell på LL og HL. 
+
+- WW: LL < HL < AL. Interessant. 
+
+- Mono-Z: Ganske bra LL og HL, nesten like bra som AL.
 
 
 
-
-
-
+\end{comment}
 
 
 
