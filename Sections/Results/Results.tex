@@ -1,6 +1,6 @@
-\chapter{Comparison of ML and Cut and Count (This is the shit, should find better title)}
+\chapter{Machine learning or cut and count?}
 \label{sec:results}
-Until this point we have looked at how well the different analyses perform on the same dataset and we are now going to see how sensitive they are to the signal samples we have chosen. To be able to do this we have to know how we can quantify the sensitivity before we move on to our results. 
+Until this point we have looked at how well the different analyses perform on the same dataset and we are now going to see how sensitive they are to the signal samples we have chosen. To be able to do this we have to know how we can quantify the sensitivity before we move on to compare ML to cut and count analysis in searching for Supersymmetry and Dark Matter. 
 %\input{Sections/Results/CutAndCount/SlepSlep}
 %\input{Sections/Results/CandC}
 
@@ -11,7 +11,7 @@ Until this point we have looked at how well the different analyses perform on th
 
 
 \section{Results}
-In this section the results of the expected significance for all four processes and the three analysis methods are presented. They are calculated as described in the previous section, but for the ML methods we have done one more step. We have found where we can get most sensitivity for the three benchmark signals for each process by looking at each bin in figure \ref{fig:BDTdataAll} and \ref{fig:NNdataAll}. This is done by calculating the significance for all bins, then cut away the first bin, then the second bin and so on. Then we see which bin we got the best significance at, and use this bin to calculate the significance for all signals in the respective mass splitting. Which bin that is used for each optimization varies a bit, but is usually within the last 1/10 of the bins in figure \ref{fig:BDTdataAll} and \ref{fig:NNdataAll}. This we can also expect since we can see that we have a lot more signal in this region of the output than in the first bins. 
+In this section the expected significance for all four new physics processes and the three analysis methods are presented. The significance is calculated as described in the previous section. For the ML methods we have studied the three benchmark signals (from high, intermediate and low mass splittings) for each process and optimized the sensitivity by applying a cut at each bin in figure \ref{fig:BDTdataAll} and \ref{fig:NNdataAll}. The optimization procedure starts by calculating the significance when integrating over all the bins (i.e complete distribution of ML scores from 0 to 1). Then we move to the next bin, integrate up to 1 and compute the corresponding significance. This procedure is repeated until only the last bin remains in the significance calculation. At the end we see which cut in the ML score gave the best significance and use this to calculate the significance for all signals for the respective mass splitting. The bin which is used to place the cut for each optimization varies a bit, but is usually within the last 10\% of the bins in figure \ref{fig:BDTdataAll} and \ref{fig:NNdataAll}. This is expected since we see that we have a lot more signal in this region of the output than in the first bins. 
 
 \subsection{Direct slepton production}
 \label{sec:resSlepSlep}
@@ -35,11 +35,11 @@ The first results we are going to look at is for the direct slepton production. 
     \caption{Neural Network.}
         \label{fig:signAllSlepSlepNN}
     \end{subfigure}
-    \caption{Significance plots for direct slepton production where all features are used during training the ML models.}
+    \caption{Significance plots for direct slepton production where all features are used during training the ML models. Since we have an overlap on some of the samples in the lower left corner, we have zoomed in at this area and added it in a empty area in the upper left corner.}
     \label{fig:signAllSlepSlep}
 \end{figure}
 
-This figure shows the expected significance for cut and count (\ref{fig:signAllSlepSlepcandc}), BDT (\ref{fig:signAllSlepSlepBDT}) and NN (\ref{fig:signAllSlepSlepNN}). The color bar is fixed in all plots to make it easier to compare the different results. As we can see, the expected significance is greater for several signal samples for both the BDT and NN than for the cut and count method. In particular, signal samples with low mass splittings ($\Delta m \leq 100$ GeV) show big improvements for both ML methods compared to cut and count. As stated in section \ref{sec:summary_ML} signals with low mass splittings are particularly hard to distinguish from SM background, making these results very interesting.
+This figure shows the expected significance for cut and count (\ref{fig:signAllSlepSlepcandc}), BDT (\ref{fig:signAllSlepSlepBDT}) and NN (\ref{fig:signAllSlepSlepNN}). The color bar is fixed at 3.5 in all plots to make it easier to compare the different results. Exactly how much greater than 3.5 the significance is is not so interesting since for these points we already have very good sensitivity (the 95\% CL exclusion limit, in figure \ref{fig:exclusionPlots}, corresponds to a significance of 1.63). Nevertheless, the exact significance value for each point is shown in the plot for each point. As we can see, the expected significance is greater for several signal samples for both the BDT and NN compared with the cut and count method. In particular, signal samples with low mass splittings ($\Delta m \leq 100$ GeV), found along the diagonal in figure \ref{fig:signAllSlepSlep}, show big improvements for both ML methods compared to cut and count. As stated in section \ref{sec:summary_ML} signals with low mass splittings are particularly hard to distinguish from SM background, making these results very interesting.
 
 
 
@@ -55,7 +55,7 @@ This figure shows the expected significance for cut and count (\ref{fig:signAllS
 \subsection{Chargino pair with slepton/sneutrino-mediated-decay}
 \label{sec:resC1C1_SlepSnu}
 
-The results for the chargino production with slepton/sneutrino-mediated-decay are presented in figure \ref{fig:signAllslepsnu}. Here are the x-axis the mass of the chargino, while the y-axis remains the mass of the neutralino.
+The results for the chargino production with slepton/sneutrino-mediated-decays are presented in figure \ref{fig:signAllslepsnu}. Here are the x-axis the mass of the chargino, while the y-axis remains the mass of the neutralino.
 
 \begin{figure}[H]
     \centering
@@ -75,7 +75,7 @@ The results for the chargino production with slepton/sneutrino-mediated-decay ar
     \caption{Neural Network.}
         \label{fig:signAllslepsnuNN}
     \end{subfigure}
-    \caption{Significance plots for chargino production with slepton/sneutrino-mediated-decay where all features are used during training the ML models.}
+    \caption{Significance plots for chargino production with slepton/sneutrino-mediated-decay where all features are used during training of the ML models.}
     \label{fig:signAllslepsnu}
 \end{figure}
 
@@ -136,7 +136,7 @@ The next results we are going to look at are for the chargino production with W-
     \label{fig:signAllWW}
 \end{figure}
 
-From figure \ref{fig:signAllWW}, we can easily see that the sensitivity are better for most signal samples for the ML methods than the cut and count method. However, the sensitivity all over is not that good, and we should not expect to do any discovery at any mass splitting. 
+From figure \ref{fig:signAllWW}, we can easily see that the sensitivity are better for most signal samples for the ML methods compared with the cut and count method. However, the sensitivity over all is not very good, and we should not expect to make any discoveries at any mass splitting. This is somewhat expected from the fact that the cross-section for W-mediated decay is much smaller since we loose quite a lot by ignoring the quark decays of the W (only 11\% of the BR is to leptons). In addition the W-mediated decay is identical to SM WW production which is a challenging background. More optimization would be needed to increase the sensitivity in this channel, which also are discussed in the publication \cite{sleptonexclusion}.
 
 
 
@@ -198,15 +198,16 @@ The last results we are going to look at is for the mono-Z process. The results 
     \label{fig:signAllmonoZ}
 \end{figure}
 
-The figure shows that the cut and count method are somewhat sensitive to signals with low mass splittings ($\Delta m < 100$ GeV). However, the ML methods are still more sensitive to a wider range of signals with low mass splittings. 
+The figure shows that the cut and count method is somewhat sensitive to signals with low mass splittings ($\Delta m < 100$ GeV). However, the ML methods are still more sensitive to a wider range of signals with low mass splittings. 
 
 
 
 \subsection{Summarizing the results}
-Overall the ML methods have better sensitivity compared to the cut and count method, especially for low mass splittings. This is also the case for the ML methods trained on low level and high level features, but they are not as good as the ones trained on all features. These results can be found in appendix \ref{sec:appsignificance}. 
+From our studies it seems that overall the ML methods show a better sensitivity compared to the cut and count method, especially for low mass splittings. Low mass splittings is what we are most interested in improving with ML techniques since the cut and count analyses are less sensitive here. This is also the case for the ML methods trained on low level and high level features, but they are not as good as the ones trained on all features. These results can be found in appendix \ref{sec:appsignificance}. 
 
+The difference between the performance of the BDT and NN are not very noticeable, but it seems like the BDT is slightly more sensitive overall. But, as mentioned earlier in this thesis, the NN are much more sensitive to the parameters we give it than the BDT. This means that with some more time for optimization of the hyperparameters, we would probably be able to get just as good results as for the BDT or even better. 
 
-
+In this thesis we have not done a full analysis of the cut and count method as is presented in chapter \ref{sec:CandCanalysis}. We have only used one signal region (for SUSY $m_{T2} > 160$ GeV) while in they publication they do a multi-bin likelihood fit including the control and signal regions. This is why the exclusion curves from the publications are better than what we have obtained for the cut and count. Nevertheless, the fact that the ML methods show a better performance towards low mass splitting is very promising and with more optimization the sensitivity could be further increased. For direct slepton, especially, it seems like we are able to get a sensitivity which is better than what was achieved in the publication in the lower left part of the parameter space.
 
 \begin{comment}
 

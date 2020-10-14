@@ -1,4 +1,4 @@
-\documentclass[english]{report}
+\documentclass[english, openright]{report}
 \usepackage[utf8]{inputenc}
 %\usepackage[UKenglish]{duomasterforside}
 %\usepackage{siunitx}
@@ -102,12 +102,13 @@
 
 %%%%%\input{Sections/titlepage.tex}
 \input{Sections/Abstract.tex}
+%%%%%%%%%\input{Sections/Acknowledgements}
 \tableofcontents
-\listoftables
-\listoffigures
-\pagenumbering{arabic}
-\input{Sections/Introduction.tex}
+%\listoftables
+%\listoffigures
 
+\input{Sections/Introduction.tex}
+\pagenumbering{arabic}
 \input{Sections/Theory/Theory.tex}
 \input{Sections/LHCandATLAS/LHCandATLAS}
 \input{Sections/Analysis/CandC}
