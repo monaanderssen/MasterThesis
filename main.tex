@@ -46,7 +46,7 @@
 %\usepackage[utf8]{inputenc}
 %\usepackage[english]{babel}
 %\usepackage{fancyhdr}
-
+\usepackage[nottoc]{tocbibind}
 % Use more than one option in new command
 \usepackage{xargs} 
 
@@ -73,7 +73,7 @@
 %\fancyfoot[LE,RO]{\thepage}
 %\lstset{basicstyle = \ttfamily, frame = tb}
 %\setcounter{secnumdepth}{8}
-
+%\setcounter{secnumdepth}{0}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{caption}
@@ -82,9 +82,28 @@
 %\usepackage{subfig}
 %\usepackage{hyperref}
 
+\newcommand\frontmatter{%
+    \cleardoublepage
+  %\@mainmatterfalse
+  \pagenumbering{roman}}
+
+\newcommand\mainmatter{%
+    \cleardoublepage
+ % \@mainmattertrue
+  \pagenumbering{arabic}}
+
+\newcommand\backmatter{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+ % \@mainmatterfalse
+   }
+
 %\usepackage{lipsum}
 \usepackage{mathrsfs}
-\pagenumbering{roman}
+%\pagenumbering{roman}
 
 \renewcommand{\chaptername}{}
 
@@ -96,19 +115,20 @@
 \renewcommand{\baselinestretch}{1.5}
 %\baselinestretch
 \begin{document}
+\frontmatter
 {\setstretch{1.0}
 \duoforside[dept = {Department of Physics}, program = {Nuclear and particle physics}]
 }
 
 %%%%%\input{Sections/titlepage.tex}
 \input{Sections/Abstract.tex}
-%%%%%%%%%\input{Sections/Acknowledgements}
+\input{Sections/Acknowledgements}
 \tableofcontents
 %\listoftables
 %\listoffigures
-
+\mainmatter
 \input{Sections/Introduction.tex}
-\pagenumbering{arabic}
+%\pagenumbering{arabic}
 \input{Sections/Theory/Theory.tex}
 \input{Sections/LHCandATLAS/LHCandATLAS}
 \input{Sections/Analysis/CandC}
@@ -122,6 +142,7 @@
 % REFERENCES
 %###############
 %\section{References}
+
 \label{sec:references}
 
 \bibliographystyle{unsrt}

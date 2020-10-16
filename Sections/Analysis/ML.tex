@@ -76,7 +76,7 @@ We have also included different variables to weight each event according to its 
     \label{tab:eventWeights}
 \end{table}
 
-Figure \ref{fig:ML_cuts} shows the distribution of the variables/features for data, the simulated SM background and some selected new physics signal models. \improvement{Del opp figur så det ikke blir en hel tom side etter all tekst er helt ferdig.} Overall, it seems like there is good agreement between data and MC, except for some missing MC in the high MET tail (figure \ref{fig:metMLcuts} and \ref{fig:metSignMLcuts}) and high b-jet multiplicity (figure \ref{fig:bjetMLcuts}). Since it is overall good agreement we can trust the data we are putting into the ML.
+Figure \ref{fig:ML_cuts} shows the distribution of the variables/features for data, the simulated SM background and some selected new physics signal models. Overall, it seems like there is good agreement between data and MC, except for some missing MC in the high MET tail (figure \ref{fig:metMLcuts} and \ref{fig:metSignMLcuts}) and high b-jet multiplicity (figure \ref{fig:bjetMLcuts}). Since it is overall good agreement we can trust the data we are putting into the ML.
 
 \newgeometry{top=20mm, bottom=25mm, twoside,inner=3cm,outer=2cm}
 \begin{figure}[H]
@@ -146,7 +146,7 @@ Figure \ref{fig:ML_cuts} shows the distribution of the variables/features for da
     \end{subfigure}
     \begin{subfigure}[t!]{0.49\textwidth}
         \includegraphics[width=\textwidth]{Figures/ML_cuts/hist1d_nBJet20_MV2c10_FixedCutBEff_85_ML_cuts.pdf}
-    \caption{B-jets.}
+    \caption{number of b-tagged jets.}
     \label{fig:bjetMLcuts}
     \end{subfigure}
 \end{figure}
@@ -530,7 +530,7 @@ In figure \ref{fig:featAllInterBDT} we can see that MET significance is the most
         \caption{Mono-Z.}
         \label{fig:MonoInter}
     \end{subfigure}
-    \caption{Test vs train for intermediate mass splittings done with the BDT. Here the test set is scaled up to match the number of training events.}
+    \caption{Test vs train for intermediate mass splittings with all features done with the BDT. Here the test set is scaled up to match the number of training events.}
     \label{fig:AllInterBDT}
 \end{figure}
 
@@ -607,7 +607,7 @@ As we can see in figure \ref{fig:AllHighfeatBDT}, the momentum for the leading l
         \caption{Mono-Z.}
         \label{fig:MonoZHigh}
     \end{subfigure}
-    \caption{Test vs train for high mass splittings done with the BDT. Here the test set is scaled up to match the number of training events.}
+    \caption{Test vs train for high mass splittings with all features done with the BDT. Here the test set is scaled up to match the number of training events.}
     \label{fig:AllHighBDT}
 \end{figure}
 
@@ -870,7 +870,7 @@ First we are going to look at the results from the BDT which are presented in fi
         \caption{Mono-Z.}
         \label{fig:BDTdataAllmonoZ}
     \end{subfigure}
-    \caption{The output from the test set together with real data using BDTs. Here the different backgrounds are stacked to see how much they contribute together with the three benchmark signals for each process.}
+    \caption{The output from the test set together with real data using BDTs trained on all features. Here the different backgrounds are stacked to see how much they contribute together with the three benchmark signals for each process.}
     \label{fig:BDTdataAll}
 \end{figure}
 %\restoregeometry
@@ -904,7 +904,7 @@ We have also tested the NN on data which are presented in figure \ref{fig:NNdata
         \caption{Mono-Z.}
         \label{fig:NNdataAllmonoZ}
     \end{subfigure}
-    \caption{The output from the test set together with real data from the NN. Here the different backgrounds are stacked to see how much they contribute together with the three benchmark signals for each process.}
+    \caption{The output from the test set together with real data from the NNs trained on all features. Here the different backgrounds are stacked to see how much they contribute together with the three benchmark signals for each process.}
     \label{fig:NNdataAll}
 \end{figure}
 %\restoregeometry
